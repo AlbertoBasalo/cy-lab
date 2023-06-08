@@ -31,7 +31,7 @@ describe("Given an already registered and logged user", () => {
 
 /**
  * Given a secured endpoint returning 401
- *  when the visits a page calling it
+ *  when the user visits a page calling it
  *   should be redirected to the register page
  */
 describe("Given a secured endpoint returning 401", () => {
@@ -44,7 +44,7 @@ describe("Given a secured endpoint returning 401", () => {
       body: "Unauthorized",
     }).as("getSecuredApi");
   });
-  context("when the visits a page calling itt", () => {
+  context("when the user visits a page calling it", () => {
     beforeEach(() => {
       cy.visit(URL_MY_ACTIVITIES);
     });
