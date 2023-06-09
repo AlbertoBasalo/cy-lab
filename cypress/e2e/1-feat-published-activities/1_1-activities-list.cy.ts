@@ -12,8 +12,8 @@ describe("Given the Activities list", () => {
   let publishedActivities: any[] = [];
   beforeEach(() => {
     cy.visit("http://localhost:4200/");
-    cy.fixture("activities").then((activitiesElement) => {
-      const activities = activitiesElement as unknown as any[];
+    cy.fixture("activities").then((fixtureContent) => {
+      const activities = fixtureContent as unknown as any[];
       publishedActivities = activities.filter((activity: any) => activity.state === "published");
       cy.intercept("GET", API_URL, {
         body: publishedActivities,
@@ -28,7 +28,9 @@ describe("Given the Activities list", () => {
     const firstActivity = publishedActivities[0];
     cy.get(`#${firstActivity.slug}`).then((firstActivityElement) => {
       expect(firstActivityElement.find('[name="title"]')).to.contain.text(firstActivity.title);
-      expect(firstActivityElement.find('[itemprop="priceCurrency"]')).to.contain.text(firstActivity.price);
+      expect(firstActivityElement.find('[itemprop="priceCurrency"]')).to.contain.text(
+        firstActivity.price
+      );
       const printedDate = firstActivityElement.find("time").text();
       const actual = new Date(printedDate).toLocaleDateString();
       const expected = new Date(firstActivity.date).toLocaleDateString();
