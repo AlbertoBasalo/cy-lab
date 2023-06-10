@@ -37,7 +37,7 @@ describe("Given an already registered and logged user", () => {
 describe("Given a secured endpoint returning 401", () => {
   const URL_REGISTER = "http://localhost:4200/auth/sign-up";
   const URL_MY_ACTIVITIES = "http://localhost:4200/activities/mines";
-  const URL_SECURE_ENDPOINT = "http://localhost:3000/activities/mines";
+  const URL_SECURE_ENDPOINT = "http://localhost:3000/activities/?userId=";
   beforeEach(() => {
     cy.intercept("GET", URL_SECURE_ENDPOINT, {
       statusCode: 401,

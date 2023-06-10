@@ -7,7 +7,6 @@
  *    Then should toggle details article
  *   When changing an activity state
  *    Then should send a request to the API
- *
  */
 describe("Given an activity owner", () => {
   const URL_MY_ACTIVITIES = "http://localhost:4200/activities/mines";

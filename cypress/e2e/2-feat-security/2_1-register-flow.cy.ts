@@ -17,7 +17,7 @@ describe("Given a user at registration flow", () => {
       cy.visit(URL_REGISTER);
       cy.intercept("POST", API_REGISTER, {
         statusCode: 201,
-        fixture: "token.json",
+        fixture: "token",
       }).as("register");
       cy.get("#username").clear().type("John Doe");
       cy.get('[type="email"]').clear().type("john@doe.com");
@@ -38,7 +38,10 @@ describe("Given a user at registration flow", () => {
       cy.wait("@register");
       const userAccessToken = localStorage.getItem("user-access-token") || "";
       const actualToken = JSON.parse(userAccessToken);
-      const expectedToken = { accessToken: "xxx.xxx.xxx", user: { id: "1", name: "John Doe", email: "john@doe.com" } };
+      const expectedToken = {
+        accessToken: "xxx.xxx.xxx",
+        user: { id: 1, name: "John Doe", email: "john@doe.com" },
+      };
       expect(actualToken).to.deep.equal(expectedToken);
     });
     it("should redirect the user to the home page", () => {
