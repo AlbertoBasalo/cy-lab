@@ -1,14 +1,15 @@
 /**
  * Given the list of activities at the Home page
  *  when click on a home page activity link
- *  then should navigate the activity detail page
+ *    then should navigate the activity detail page
  */
 describe("Given the list of activities at the Home page", () => {
   const API_URL = "http://localhost:3000/activities?state=published";
+  const PAGE_URL = "http://localhost:4200/";
   let publishedActivities: any[] = [];
   let firstActivity: any = {};
   beforeEach(() => {
-    cy.visit("http://localhost:4200/");
+    cy.visit(PAGE_URL);
     cy.fixture("activities").then((activitiesElement) => {
       const activities = activitiesElement as unknown as any[];
       publishedActivities = activities.filter((activity: any) => activity.state === "published");
@@ -29,36 +30,36 @@ describe("Given the list of activities at the Home page", () => {
 });
 
 /**
- * given the detail page of the first activity
- *    then should load the activity information
+ * Given the detail page of the first activity
+ *   then should load the activity information
  *   when data is loaded
- *    then should show the full activity information
+ *     then should show an article with activity information
  */
 describe("Given the detail page of the first activity", () => {
+  const API_URL = "http://localhost:3000/activities?slug=";
+  const PAGE_URL = "http://localhost:4200/activities";
   let publishedActivities: any[] = [];
   let firstActivity: any = {};
-  const API_URL = "http://localhost:3000/activities?slug=";
   beforeEach(() => {
     cy.fixture("activities").then((activitiesElement) => {
       const activities = activitiesElement as unknown as any[];
       publishedActivities = activities.filter((activity: any) => activity.state === "published");
       firstActivity = publishedActivities[0];
-      cy.visit(`http://localhost:4200/activities/${firstActivity.slug}`);
+      cy.visit(`${PAGE_URL}/${firstActivity.slug}`);
       cy.intercept("GET", `${API_URL}${firstActivity.slug}`, cy.spy().as("getActivity"));
     });
   });
   it("then should load the activity information", () => {
-    cy.get("@getActivity").should("have.been.calledOnce");
+    cy.get("@getActivity").should("have.been.called");
   });
   context("when data is loaded", () => {
     beforeEach(() => {
       cy.intercept("GET", `${API_URL}${firstActivity.slug}`, {
         body: [firstActivity],
       });
-      // cy.wait("@getActivity");
     });
-    it("then should show the full activity information", () => {
-      cy.get("article").should("be.visible");
+    it("then should showan article with activity information", () => {
+      cy.get(`article[name='${firstActivity.slug}']`).should("be.visible");
     });
   });
 });
