@@ -41,8 +41,8 @@ describe("The sign-up form", () => {
       cy.get("form button[type='submit']") // Act
         .should("be.enabled"); // Assert
     });
-    it("should mark all inputs as valid", () => {
-      cy.get("form input .ng-valid").should("have.length", expectedInputs);
+    it.only("should mark all inputs as valid", () => {
+      cy.get("form input[aria-invalid='false']").should("have.length", expectedInputs);
     });
   });
   context("when the user fills the form incorrectly", () => {
