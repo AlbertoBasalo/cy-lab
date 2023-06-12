@@ -5,11 +5,11 @@
  *     should allow to submit the form
  *     should mark all inputs as valid
  *   when the user fills the form incorrectly
- *     should disabled the submit button if the form is invalid
+ *     should disabled the submit button
  *     should mark the username as invalid if it is empty
  *     should mark the username as invalid after clear it
- *     should not show an error for user before interaction
- *     should show an error for user name while invalid
+ *     should not show an error message to the user before interaction
+ *     should show an error message to the user after typing invalid data
  *     should mark the username as valid if it is not empty
  *     should mark the email as invalid if it is not an email
  *  when the user resets the form
@@ -46,7 +46,7 @@ describe("The sign-up form", () => {
     });
   });
   context("when the user fills the form incorrectly", () => {
-    it("should disabled the submit button if the form is invalid", () => {
+    it("should disabled the submit button ", () => {
       cy.get("form button").should("be.disabled");
     });
     it("should mark the username as invalid if it is empty", () => {
@@ -57,10 +57,10 @@ describe("The sign-up form", () => {
       cy.get("#username").clear();
       cy.get("#username").should("have.class", "ng-invalid");
     });
-    it("should not show an error for user before interaction", () => {
+    it("should not show an error message to the user before interaction", () => {
       cy.get("[data-test='username.error']").should("not.be.visible");
     });
-    it("should show an error for user name while invalid", () => {
+    it("should show an error message to the user after typing invalid data", () => {
       cy.get("#username").clear().type("a");
       cy.get("[data-test='username.error']").should("be.visible");
     });
@@ -75,11 +75,14 @@ describe("The sign-up form", () => {
   });
   context("when the user resets the form", () => {
     it("should clear the form when the reset button is clicked", () => {
+      // Arrange
       cy.get("#username").clear().type("John");
       cy.get('[type="email"]').clear().type("not-an-email");
       cy.get('[type="password"]').first().type("123a");
       cy.get('[name="repeatPassword"]').type("123a");
-      cy.get("form button.contrast.outline").click();
+      // Act
+      cy.contains("button", "Reset").click();
+      // Assert
       cy.get("#username").should("have.value", "");
       cy.get('[type="email"]').should("have.value", "");
       cy.get('[type="password"]').first().should("have.value", "");
