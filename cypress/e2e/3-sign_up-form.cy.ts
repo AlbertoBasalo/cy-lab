@@ -41,7 +41,7 @@ describe("The sign-up form", () => {
       cy.get("form button[type='submit']") // Act
         .should("be.enabled"); // Assert
     });
-    it.only("should mark all inputs as valid", () => {
+    it("should mark all inputs as valid", () => {
       cy.get("form input[aria-invalid='false']").should("have.length", expectedInputs);
     });
   });
