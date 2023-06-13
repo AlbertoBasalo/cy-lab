@@ -14,7 +14,17 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
-import './commands'
+import "./commands";
+import { LOCAL_TOKEN } from "./commands";
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
+
+// export a function that return s the current user-access-token stored at local storage
+export const getUserAccessToken = (): any => {
+  const userAccessToken = localStorage.getItem(LOCAL_TOKEN);
+  if (!userAccessToken) {
+    return null;
+  }
+  return JSON.parse(userAccessToken);
+};

@@ -58,7 +58,7 @@ describe("Given the detail page of the first activity", () => {
         body: [firstActivity],
       });
     });
-    it("then should showan article with activity information", () => {
+    it("then should show an article with activity information", () => {
       cy.get(`article[name='${firstActivity.slug}']`).should("be.visible");
     });
   });
