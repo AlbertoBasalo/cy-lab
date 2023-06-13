@@ -4,8 +4,8 @@
  *    then should navigate the activity detail page
  */
 describe("Given the list of activities at the Home page", () => {
-  const API_URL = "http://localhost:3000/activities?state=published";
-  const PAGE_URL = "http://localhost:4200/";
+  const PAGE_URL = "/";
+  const API_URL = `${Cypress.env("apiUrl")}/activities?state=published`;
   let publishedActivities: any[] = [];
   let firstActivity: any = {};
   beforeEach(() => {
@@ -36,8 +36,8 @@ describe("Given the list of activities at the Home page", () => {
  *     then should show an article with activity information
  */
 describe("Given the detail page of the first activity", () => {
-  const API_URL = "http://localhost:3000/activities?slug=";
-  const PAGE_URL = "http://localhost:4200/activities";
+  const API_URL = `${Cypress.env("apiUrl")}/activities?slug=`;
+  const PAGE_URL = "/activities";
   let publishedActivities: any[] = [];
   let firstActivity: any = {};
   beforeEach(() => {

@@ -9,8 +9,9 @@
  */
 
 describe("Given the Activities list", () => {
-  const PAGE_URL = "http://localhost:4200/";
-  const API_URL = "http://localhost:3000/activities?state=published";
+  const PAGE_URL = "/";
+  const API_URL = `${Cypress.env("apiUrl")}/activities?state=published`;
+  const LIST_SELECTOR = "main[name='list-content']";
   let publishedActivities: any[] = [];
   let firstActivity: any = null;
   context("when the page is loaded with the published activities", () => {
@@ -42,21 +43,21 @@ describe("Given the Activities list", () => {
       });
     });
     it("then should have a link to the activity page", () => {
-      cy.get("main[name='list-content'] div:nth-child(1) > [name='title'] a").should(
+      cy.get(`${LIST_SELECTOR} div:nth-child(1) > [name='title'] a`).should(
         "have.attr",
         "href",
         `/activities/${firstActivity.slug}`
       );
     });
     it("then should list in a monospace font", () => {
-      cy.get("main[name='list-content'] div:nth-child(1) > [name='title']").should(
+      cy.get(`${LIST_SELECTOR} div:nth-child(1) > [name='title']`).should(
         "have.css",
         "font-family",
         "monospace"
       );
     });
     it("then should only show published activities", () => {
-      cy.get("main[name='list-content'] div").should("not.contain.text", "draft");
+      cy.get(`${LIST_SELECTOR} div`).should("not.contain.text", "draft");
     });
   });
 });

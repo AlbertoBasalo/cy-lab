@@ -10,28 +10,30 @@
  *    should display anonymous menu
  */
 describe("Given a user at registration flow", () => {
-  const URL_REGISTER = "http://localhost:4200/auth/sign-up";
-  const API_REGISTER = "http://localhost:3000/register";
+  const PAGE_URL = "/auth/sign-up";
+  const API_URL = `${Cypress.env("apiUrl")}/register`;
+  let NEW_USER: any = null;
+  before(() => {
+    cy.fixture("new-user").then((fixtureContent) => {
+      NEW_USER = fixtureContent;
+    });
+  });
   context("when sends valid new credentials", () => {
     beforeEach(() => {
-      cy.visit(URL_REGISTER);
-      cy.intercept("POST", API_REGISTER, {
+      cy.visit(PAGE_URL);
+      cy.intercept("POST", API_URL, {
         statusCode: 201,
         fixture: "token",
       }).as("register");
-      cy.get("#username").clear().type("John Doe");
-      cy.get('[type="email"]').clear().type("john@doe.com");
-      cy.get('[type="password"]').first().type("123a");
-      cy.get('[name="repeatPassword"]').type("123a");
+      cy.get("#username").clear().type(NEW_USER.username);
+      cy.get('[type="email"]').clear().type(NEW_USER.email);
+      cy.get('[type="password"]').first().type(NEW_USER.password);
+      cy.get('[name="repeatPassword"]').type(NEW_USER.password);
       cy.get("form button[type=submit]").click();
     });
     it("should send the form data to the server", () => {
       cy.wait("@register");
-      const expectedPayload = {
-        username: "John Doe",
-        email: "john@doe.com",
-        password: "123a",
-      };
+      const expectedPayload = NEW_USER;
       cy.get("@register").its("request.body").should("deep.equal", expectedPayload);
     });
     it("should store the token in the local storage", () => {
@@ -40,13 +42,13 @@ describe("Given a user at registration flow", () => {
       const actualToken = JSON.parse(userAccessToken);
       const expectedToken = {
         accessToken: "xxx.xxx.xxx",
-        user: { id: 1, name: "John Doe", email: "john@doe.com" },
+        user: { id: 1, name: NEW_USER.username, email: NEW_USER.email },
       };
       expect(actualToken).to.deep.equal(expectedToken);
     });
     it("should redirect the user to the home page", () => {
       cy.wait("@register");
-      cy.url().should("equal", "http://localhost:4200/");
+      cy.url().should("equal", Cypress.config("baseUrl") + "/");
     });
     it("should display user menu", () => {
       cy.wait("@register");
@@ -56,23 +58,21 @@ describe("Given a user at registration flow", () => {
 
   context("when sends invalid new credentials", () => {
     beforeEach(() => {
-      cy.visit(URL_REGISTER);
-      cy.intercept("POST", API_REGISTER, {
+      cy.visit(PAGE_URL);
+      cy.intercept("POST", API_URL, {
         statusCode: 400,
         body: "Invalid credentials",
       }).as("register");
-      cy.get("#username").clear().type("John Doe");
-      cy.get('[type="email"]').clear().type("john@doe.com");
-      cy.get('[type="password"]').first().type("123a");
-      cy.get('[name="repeatPassword"]').type("123a");
+      cy.get("#username").clear().type(NEW_USER.username);
+      cy.get('[type="email"]').clear().type(NEW_USER.email);
+      cy.get('[type="password"]').first().type(NEW_USER.password);
+      cy.get('[name="repeatPassword"]').type(NEW_USER.password);
       cy.get("form button[type=submit]").click();
     });
-
     it("should show the error dialog", () => {
       cy.wait("@register");
       cy.get("#error-dialog").should("be.visible");
     });
-
     it("should display anonymous menu", () => {
       cy.wait("@register");
       cy.get("#anonymous-menu").should("be.visible");

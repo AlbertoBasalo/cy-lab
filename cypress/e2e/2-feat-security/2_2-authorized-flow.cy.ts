@@ -5,8 +5,8 @@
  *   should send the token to the server
  */
 describe("Given an already registered and logged user", () => {
-  const URL_HOME = "http://localhost:4200/";
-  const API_URL = "http://localhost:3000/activities?state=published";
+  const PAGE_URL = "http://localhost:4200/";
+  const API_URL = `${Cypress.env("apiUrl")}/activities?state=published`;
   beforeEach(() => {
     cy.fixture("token.json").then((token) => {
       localStorage.setItem("user-access-token", JSON.stringify(token));
@@ -15,7 +15,7 @@ describe("Given an already registered and logged user", () => {
   });
   context("when visits the home page", () => {
     beforeEach(() => {
-      cy.visit(URL_HOME);
+      cy.visit(PAGE_URL);
     });
     it("should display user menu", () => {
       cy.get("#user-menu").should("be.visible");
@@ -35,22 +35,22 @@ describe("Given an already registered and logged user", () => {
  *   should be redirected to the register page
  */
 describe("Given a secured endpoint returning 401", () => {
-  const URL_REGISTER = "http://localhost:4200/auth/sign-up";
-  const URL_MY_ACTIVITIES = "http://localhost:4200/activities/mines";
-  const URL_SECURE_ENDPOINT = "http://localhost:3000/activities/?userId=";
+  const REGISTER_URL = "http://localhost:4200/auth/sign-up";
+  const PAGE_URL = "http://localhost:4200/activities/mines";
+  const API_URL = `${Cypress.env("apiUrl")}/activities/?userId=`;
   beforeEach(() => {
-    cy.intercept("GET", URL_SECURE_ENDPOINT, {
+    cy.intercept("GET", API_URL, {
       statusCode: 401,
       body: "Unauthorized",
     }).as("getSecuredApi");
   });
   context("when the user visits a page calling it", () => {
     beforeEach(() => {
-      cy.visit(URL_MY_ACTIVITIES);
+      cy.visit(PAGE_URL);
     });
     it("should be redirected to the register page", () => {
       cy.wait("@getSecuredApi");
-      cy.url().should("equal", URL_REGISTER);
+      cy.url().should("equal", REGISTER_URL);
     });
   });
 });
