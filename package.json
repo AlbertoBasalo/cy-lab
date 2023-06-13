@@ -19,6 +19,8 @@
   "scripts": {
     "start": "cypress open --e2e --browser chrome",
     "test": "cypress run ",
+    "test:1": "cypress run --spec '**/1-feat-published-activities/**/*.cy.ts'",
+    "test:1_1": "cypress run --spec '**/1_1*.cy.ts'",
     "format": "prettier --write \"./**/*.{ts,json}\"",
     "lint": "eslint src --ext .ts",
     "lint:fix": "npm run lint -- --fix",

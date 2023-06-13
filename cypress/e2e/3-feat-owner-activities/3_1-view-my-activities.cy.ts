@@ -8,11 +8,13 @@
  *   When changing an activity state
  *    Then should send a request to the API
  */
+
+// To Do: Refactor using commands
 describe("Given an activity owner", () => {
   const URL_MY_ACTIVITIES = "http://localhost:4200/activities/mines";
   let myActivities: any[] = [];
   beforeEach(() => {
-    cy.fixture("token.json").then((token) => {
+    cy.fixture("token").then((token) => {
       localStorage.setItem("user-access-token", JSON.stringify(token));
       cy.fixture("activities").then((fixtureContent) => {
         const activities = fixtureContent as unknown as any[];

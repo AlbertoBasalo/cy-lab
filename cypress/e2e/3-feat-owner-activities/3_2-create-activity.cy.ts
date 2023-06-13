@@ -9,3 +9,5 @@
  *   Then should navigate to the activities list page
  *   And should see the activity created
  */
+
+// To Do: Use Page Object pattern

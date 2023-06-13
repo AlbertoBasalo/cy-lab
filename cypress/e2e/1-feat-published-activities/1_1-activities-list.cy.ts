@@ -13,6 +13,7 @@ describe("Given the Activities list", () => {
   const API_URL = `${Cypress.env("apiUrl")}/activities?state=published`;
   const LIST_SELECTOR = "main[name='list-content']";
   let publishedActivities: any[] = [];
+  let activitiesCounter = 0;
   let firstActivity: any = null;
   context("when the page is loaded with the published activities", () => {
     beforeEach(() => {
@@ -20,6 +21,7 @@ describe("Given the Activities list", () => {
       cy.fixture("activities").then((fixtureContent) => {
         const activities = fixtureContent as unknown as any[];
         publishedActivities = activities.filter((activity: any) => activity.state === "published");
+        activitiesCounter = publishedActivities.length;
         firstActivity = publishedActivities[0];
         cy.intercept("GET", API_URL, {
           body: publishedActivities,
@@ -27,8 +29,8 @@ describe("Given the Activities list", () => {
       });
     });
     it("then should show the number of activities", () => {
-      cy.get("[name='items-count']").should("contain.text", publishedActivities.length);
-      cy.get("[name='activity-item']").should("have.length", publishedActivities.length);
+      cy.get("[name='items-count']").should("contain.text", activitiesCounter);
+      cy.get("[name='activity-item']").should("have.length", activitiesCounter);
     });
     it("then should show activities name, price, and date", () => {
       cy.get(`#${firstActivity.slug}`).then((firstActivityElement) => {
