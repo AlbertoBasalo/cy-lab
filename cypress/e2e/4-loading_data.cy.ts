@@ -19,9 +19,9 @@
  */
 
 describe("The Home page", () => {
-  const API_URL = "http://localhost:3000/activities*";
+  const API_URL = `${Cypress.env("apiUrl")}/activities*`;
   beforeEach(() => {
-    cy.visit("http://localhost:4200/");
+    cy.visit("/");
   });
   context("when page is loading data", () => {
     beforeEach(() => {
