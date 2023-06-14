@@ -41,7 +41,10 @@ describe("Given a registered user", () => {
     it("Then should send a post request to the API", () => {
       cy.wait("@postActivity").then((interception) => {
         const { request } = interception;
-        expect(request.body.title).to.equal(activity.title);
+        const payload = request.body;
+        expect(payload.title).to.equal(activity.title);
+        cy.log("Payload", payload);
+        expect(payload.id).to.exist;
       });
     });
     it("Then should navigate to the activities list page", () => {
