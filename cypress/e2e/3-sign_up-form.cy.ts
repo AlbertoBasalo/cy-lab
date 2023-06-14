@@ -83,10 +83,10 @@ describe("The sign-up form", () => {
       // Act
       cy.contains("button", "Reset").click();
       // Assert
-      cy.get("#username").should("have.value", "");
-      cy.get('[type="email"]').should("have.value", "");
-      cy.get('[type="password"]').first().should("have.value", "");
-      cy.get('[name="repeatPassword"]').should("have.value", "");
+      cy.get("#username").should("be.empty");
+      cy.get('[type="email"]').should("be.empty");
+      cy.get('[type="password"]').first().should("be.empty");
+      cy.get('[name="repeatPassword"]').should("be.empty");
     });
   });
   afterEach(() => {

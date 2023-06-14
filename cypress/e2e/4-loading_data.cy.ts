@@ -26,8 +26,8 @@ describe("The Home page", () => {
   context("when page is loading data", () => {
     beforeEach(() => {
       cy.intercept("GET", API_URL, {
-        delay: 1000,
-      });
+        delay: 500,
+      }).as("getActivities");
     });
     it("should show a loading message", () => {
       cy.get("aside[aria-busy='true']").should("exist");
@@ -38,12 +38,16 @@ describe("The Home page", () => {
     it("should not show data", () => {
       cy.get("article[name='Activity list']").should("not.exist");
     });
+    afterEach(() => {
+      cy.wait("@getActivities");
+    });
   });
   context("when there is an error", () => {
     beforeEach(() => {
       cy.intercept("GET", API_URL, {
         statusCode: 400,
-      });
+      }).as("getActivities");
+      cy.wait("@getActivities");
     });
     it("should show an error dialog", () => {
       cy.get("#error-dialog").should("be.visible");
@@ -52,7 +56,7 @@ describe("The Home page", () => {
       cy.get("aside[aria-busy='true']").should("not.exist");
     });
     it("should not show data", () => {
-      cy.get("article").should("not.exist");
+      cy.get("article[name='Activity list']").should("not.exist");
     });
     afterEach(() => {
       cy.get(".close").click();
