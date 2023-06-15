@@ -31,7 +31,7 @@ describe("Given the list of activities at the Home page", () => {
 
 /**
  * Given the detail page of the first activity
- *   then should load the activity information
+ *   then should send request to load the activity information
  *   when data is loaded
  *     then should show an article with activity information
  */
@@ -49,7 +49,7 @@ describe("Given the detail page of the first activity", () => {
       cy.intercept("GET", `${API_URL}${firstActivity.slug}`, cy.spy().as("getActivity"));
     });
   });
-  it("then should load the activity information", () => {
+  it("then should send request to load the activity information", () => {
     cy.get("@getActivity").should("have.been.called");
   });
   context("when data is loaded", () => {
