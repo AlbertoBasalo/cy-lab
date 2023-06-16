@@ -48,8 +48,8 @@ describe("Given the detail page of the first activity", () => {
       const activities = activitiesElement as unknown as any[];
       publishedActivities = activities.filter((activity: any) => activity.state === "published");
       firstActivity = publishedActivities[0];
-      cy.visit(`${PAGE_URL}/${firstActivity.slug}`);
       cy.intercept("GET", `${API_URL}${firstActivity.slug}`, cy.spy().as("getActivity"));
+      cy.visit(`${PAGE_URL}/${firstActivity.slug}`);
     });
   });
   it("then should send request to load the activity information", () => {
