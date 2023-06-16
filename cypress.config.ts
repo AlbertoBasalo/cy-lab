@@ -16,25 +16,6 @@ export default defineConfig({
     },
     setupNodeEvents(on, config) {
       // implement node event listeners here
-      //https://dev.to/samelawrence/how-to-test-in-multiple-environments-in-cypress-10-1i9h
-      // if (config.env.master) {
-      //   return {
-      //     baseUrl: "<master env baseUrl>",
-      //     env: {
-      //       env: "master",
-      //       auth_username: "<email>",
-      //       auth_password: "<password>",
-      //     },
-      //   };
-      // }
-      // return {
-      //   baseUrl: "<qa env baseUrl>",
-      //   env: {
-      //     env: "qa",
-      //     auth_username: "<email>",
-      //     auth_password: "<password>",
-      //   },
-      // };
     },
   },
 });
