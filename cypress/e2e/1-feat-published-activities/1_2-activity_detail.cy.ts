@@ -9,6 +9,7 @@ describe("Given the list of activities at the Home page", () => {
   let publishedActivities: any[] = [];
   let firstActivity: any = {};
   beforeEach(() => {
+    // Arrange
     cy.visit(PAGE_URL);
     cy.fixture("activities").then((activitiesElement) => {
       const activities = activitiesElement as unknown as any[];
@@ -21,9 +22,11 @@ describe("Given the list of activities at the Home page", () => {
   });
   context("when click on a home page activity link", () => {
     beforeEach(() => {
+      // Act
       cy.get(`#${firstActivity.slug} a`).click();
     });
     it("then should navigate the activity detail page", () => {
+      // Assert
       cy.url().should("include", `/activities/${firstActivity.slug}`);
     });
   });
