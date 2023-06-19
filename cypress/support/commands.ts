@@ -25,6 +25,48 @@ Cypress.Commands.add("logout", () => {
   cy.window().its("localStorage").invoke("removeItem", LOCAL_TOKEN);
 });
 
+Cypress.Commands.add("interceptPublishedActivities", () => {
+  const API_URL = `${Cypress.env("apiUrl")}/activities?state=published`;
+  cy.fixture("activities").then((activitiesElement) => {
+    const activities = activitiesElement as unknown as any[];
+    const publishedActivities = activities.filter(
+      (activity: any) => activity.state === "published"
+    );
+    cy.intercept("GET", API_URL, {
+      body: publishedActivities,
+    }).as("getPublishedActivities");
+  });
+});
+
+Cypress.Commands.add("interceptFirstActivity", () => {
+  const API_URL = `${Cypress.env("apiUrl")}/activities?slug=`;
+  cy.fixture("activities").then((activitiesElement) => {
+    const activities = activitiesElement as unknown as any[];
+    const publishedActivities = activities.filter(
+      (activity: any) => activity.state === "published"
+    );
+    const firstActivity = publishedActivities[0];
+    cy.intercept("GET", `${API_URL}${firstActivity.slug}`, {
+      body: [firstActivity],
+    }).as("getFirstActivity");
+  });
+});
+
+Cypress.Commands.add("interceptPut", () => {
+  const API_URL = `${Cypress.env("apiUrl")}/activities/**`;
+  cy.fixture("activities").then((activitiesElement) => {
+    const activities = activitiesElement as unknown as any[];
+    const publishedActivities = activities.filter(
+      (activity: any) => activity.state === "published"
+    );
+    const firstActivity = publishedActivities[0];
+    cy.intercept("PUT", `${API_URL}`, {
+      statusCode: 200,
+      body: firstActivity,
+    }).as("putActivity");
+  });
+});
+
 //
 //
 // -- This is a child command --
@@ -43,6 +85,9 @@ declare global {
     interface Chainable {
       login(): Chainable<null>;
       logout(): Chainable<null>;
+      interceptPublishedActivities(): Chainable<object>;
+      interceptFirstActivity(): Chainable<object>;
+      interceptPut(): Chainable<object>;
       // drag(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
       // dismiss(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
       // visit(originalFn: CommandOriginalFn, url: string, options: Partial<VisitOptions>): Chainable<Element>
