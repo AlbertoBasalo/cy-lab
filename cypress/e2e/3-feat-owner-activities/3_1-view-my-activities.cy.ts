@@ -52,12 +52,12 @@ describe("Given an activity owner", () => {
         const itemQ = "details[name='activity-item']";
         const API_URL = "http://localhost:3000/activities/";
         beforeEach(() => {
+          cy.intercept("PUT", API_URL + myActivities[0].id).as("putActivity");
           cy.get(`${itemQ} article[name='details'] button[name='change-state-to-draft']`)
             .first()
             .click();
         });
         it("Then should send a request to the API", () => {
-          cy.intercept("PUT", API_URL + myActivities[0].id).as("putActivity");
           cy.wait("@putActivity").then((interception) => {
             const activity = interception.request.body;
             expect(activity.state).to.equal("draft");

@@ -65,19 +65,11 @@ Cypress.Commands.add("interceptFirstActivity", () => {
   });
 });
 
-Cypress.Commands.add("interceptPut", () => {
-  const API_URL = `${Cypress.env("apiUrl")}/activities/**`;
-  cy.fixture("activities").then((activitiesElement) => {
-    const activities = activitiesElement as unknown as any[];
-    const publishedActivities = activities.filter(
-      (activity: any) => activity.state === "published"
-    );
-    const firstActivity = publishedActivities[0];
-    cy.intercept("PUT", `${API_URL}`, {
-      statusCode: 200,
-      body: firstActivity,
-    }).as("putActivity");
-  });
+Cypress.Commands.add("interceptPostBooking", () => {
+  const API_URL = `${Cypress.env("apiUrl")}/bookings/**`;
+  cy.intercept("POST", `${API_URL}`, {
+    statusCode: 201,
+  }).as("postBooking");
 });
 
 declare global {
@@ -89,7 +81,7 @@ declare global {
       registerUI(username: string, email: string, password: string): Chainable<void>;
       interceptPublishedActivities(): Chainable<object>;
       interceptFirstActivity(): Chainable<object>;
-      interceptPut(): Chainable<object>;
+      interceptPostBooking(): Chainable<object>;
       force401(): Chainable<void>;
     }
   }

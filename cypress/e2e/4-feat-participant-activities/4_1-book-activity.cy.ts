@@ -12,7 +12,7 @@ describe("Given I am a valid logged-in user visiting the first published activit
     cy.login();
     cy.interceptPublishedActivities();
     cy.interceptFirstActivity();
-    cy.interceptPut();
+    cy.interceptPostBooking();
     cy.visit(PAGE_URL);
     cy.get(`[name='list-content'] a`).first().click();
   });
