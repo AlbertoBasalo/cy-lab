@@ -1,5 +1,5 @@
 /**
- * Given I am logged in as a participant
+ * Given
  *  When
  *   Then
  */
