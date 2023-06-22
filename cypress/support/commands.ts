@@ -1,16 +1,16 @@
 /* eslint-disable @typescript-eslint/no-namespace */
 /// <reference types="cypress" />
 
-export const LOCAL_TOKEN = "user-access-token";
+export const TOKEN_KEY = "user-access-token";
 
 Cypress.Commands.add("login", () => {
   cy.fixture("token.json").then((token) => {
-    localStorage.setItem(LOCAL_TOKEN, JSON.stringify(token));
+    localStorage.setItem(TOKEN_KEY, JSON.stringify(token));
   });
 });
 
 Cypress.Commands.add("logout", () => {
-  cy.window().its("localStorage").invoke("removeItem", LOCAL_TOKEN);
+  cy.window().its("localStorage").invoke("removeItem", TOKEN_KEY);
 });
 
 Cypress.Commands.add("registerFlow", () => {
