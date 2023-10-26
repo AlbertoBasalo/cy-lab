@@ -37,7 +37,7 @@ describe("Given an already registered and logged user", () => {
 describe("Given a secured endpoint returning 401", () => {
   const REGISTER_URL = "http://localhost:4200/auth/sign-up";
   const PAGE_URL = "http://localhost:4200/activities/mines";
-  const API_URL = `${Cypress.env("apiUrl")}/activities/?userId=`;
+  const API_URL = `${Cypress.env("apiUrl")}/activities?userId=`;
   beforeEach(() => {
     cy.intercept("GET", API_URL, {
       statusCode: 401,
