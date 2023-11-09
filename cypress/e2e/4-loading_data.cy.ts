@@ -23,6 +23,26 @@ describe("The Home page", () => {
   beforeEach(() => {
     cy.visit("/");
   });
+
+  context.only("when no data arrives", () => {
+    // beforeEach(() => {
+    //   cy.intercept("GET", API_URL, {
+    //     body: [],
+    //   });
+    // });
+    it("should show a no data message", () => {
+      cy.get("article[name='Published activities']").should(
+        "contain.text",
+        "No activities available yet"
+      );
+    });
+    it("should not show an error dialog", () => {
+      cy.get("#error-dialog").should("not.exist");
+    });
+    it("should not show a loading message", () => {
+      cy.get("aside[aria-busy='true']").should("not.exist");
+    });
+  });
   context("when page is loading data", () => {
     beforeEach(() => {
       cy.intercept("GET", API_URL, {
@@ -60,22 +80,6 @@ describe("The Home page", () => {
     });
     afterEach(() => {
       cy.get(".close").click();
-    });
-  });
-  context("when no data arrives", () => {
-    beforeEach(() => {
-      cy.intercept("GET", API_URL, {
-        body: [],
-      });
-    });
-    it("should show a no data message", () => {
-      cy.get("article[name='Published activities']").should("contain.text", "No data yet!");
-    });
-    it("should not show an error dialog", () => {
-      cy.get("#error-dialog").should("not.exist");
-    });
-    it("should not show a loading message", () => {
-      cy.get("aside[aria-busy='true']").should("not.exist");
     });
   });
   context("when data arrives", () => {

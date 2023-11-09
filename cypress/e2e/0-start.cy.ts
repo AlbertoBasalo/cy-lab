@@ -5,7 +5,7 @@
  *   should have a header with 'Activity Bookings' text
  *   should contain '©' in the footer
  *   should have a link to albertobasalo.dev
- *   should have an underline element with 'Course sample' content
+ *   should have an underline element with 'Lab sample' content
  *   should have a link with css class 'secondary'
  */
 describe("The Activity Bookings home page", () => {
@@ -28,9 +28,9 @@ describe("The Activity Bookings home page", () => {
     cy.visit("http://localhost:4200/");
     cy.get('[href="https://albertobasalo.dev"]').should("exist");
   });
-  it("should have an underline element with 'Course sample' content", () => {
+  it("should have an underline element with 'Lab sample' content", () => {
     cy.visit("http://localhost:4200/");
-    cy.get("u").contains("Course sample");
+    cy.get("u").contains("Lab sample");
   });
   it("should have a link with css class 'secondary'", () => {
     cy.visit("http://localhost:4200/");
