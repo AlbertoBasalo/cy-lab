@@ -27,9 +27,10 @@ describe("The Home page", () => {
     });
   });
   context("when data arrives", () => {
+    const WAIT_TIME = 2000;
     beforeEach(() => {
       // wait for the data to arrive
-      cy.wait(2000);
+      cy.wait(WAIT_TIME);
     });
     it("should have main list content", () => {
       cy.get("ul[name='activities-list']").should("exist");

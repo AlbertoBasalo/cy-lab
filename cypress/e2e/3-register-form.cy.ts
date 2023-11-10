@@ -34,7 +34,7 @@ describe("The register form", () => {
     beforeEach(() => {
       cy.get("#username").clear().type("John").blur();
       cy.get("[type='email']").clear().type("john.doe@acme.com").blur();
-      cy.get("[type='password']").first().clear().type("1234a").blur();
+      cy.get("[name='password']").first().clear().type("1234a").blur();
       cy.get("#repeatPassword").clear().type("1234a").blur();
     });
     it("should allow to submit the form", () => {
@@ -49,14 +49,14 @@ describe("The register form", () => {
       // Arrange
       cy.get("#username").clear().type("John");
       cy.get('[type="email"]').clear().type("not-an-email");
-      cy.get('[type="password"]').first().type("123a");
+      cy.get('[name="password"]').first().type("123a");
       cy.get("#repeatPassword").type("123a");
       // Act
       cy.get("input[type='reset']").click();
       // Assert
       cy.get("#username").should("be.empty");
       cy.get('[type="email"]').should("be.empty");
-      cy.get('[type="password"]').first().should("be.empty");
+      cy.get('[name="password"]').first().should("be.empty");
       cy.get("#repeatPassword").should("be.empty");
     });
   });
