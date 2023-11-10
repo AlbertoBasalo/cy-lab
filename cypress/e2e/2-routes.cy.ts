@@ -4,6 +4,7 @@
  *   should have a header link with 'about' text
  *   should have a 'registerLink' id
  *   should navigate to the register page
+ *   should not have broken links
  */
 describe("The Activity Bookings navigation links", () => {
   const repoUrl = "https://github.com/AlbertoBasalo/ng-lab";
@@ -29,6 +30,9 @@ describe("The Activity Bookings navigation links", () => {
     cy.get("#registerLink") // Arrange
       .click(); // Act
     cy.url().should("eq", registerUrl); // Assert
+  });
+  it("should not have broken links", () => {
+    cy.get("a").each((a) => cy.request(a.prop("href")));
   });
   afterEach(() => {
     cy.log("3️⃣ After Each");
