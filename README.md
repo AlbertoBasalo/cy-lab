@@ -22,6 +22,10 @@ It is a demo web app with simple but enough functionality. Get clone, install th
 
 ## 🛠 VS Code configuration
 
+```bash
+npm i -D @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint eslint-config-prettier prettier typescript
+```
+
 - [My Visual Studio Code .dotfiles](https://github.com/AlbertoBasalo/dotfiles)
 
 ### ⚙️ Settings
