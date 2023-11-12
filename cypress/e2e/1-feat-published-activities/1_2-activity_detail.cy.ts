@@ -2,67 +2,33 @@
  * Given the list of activities at the Home page
  *  when click on a home page activity link
  *    then should navigate the activity detail page
+ *    then should show an article with activity information
  */
 describe("Given the list of activities at the Home page", () => {
-  const PAGE_URL = "/";
-  const API_URL = `${Cypress.env("apiUrl")}/activities?state=published`;
-  let publishedActivities: any[] = [];
-  let firstActivity: any = {};
   beforeEach(() => {
-    // Arrange
-    cy.fixture("activities").then((activitiesElement) => {
-      const activities = activitiesElement as unknown as any[];
-      publishedActivities = activities.filter((activity: any) => activity.state === "published");
-      firstActivity = publishedActivities[0];
-      cy.intercept("GET", API_URL, {
-        body: publishedActivities,
-      });
-      cy.visit(PAGE_URL);
-    });
+    cy.visit("/");
+    cy.get("#activities-list").as("listContent");
+    cy.get("@listContent").find("li").first().find("a").as("firstActivityLink");
   });
   context("when click on a home page activity link", () => {
+    let activityName = "";
     beforeEach(() => {
-      // Act
-      cy.get(`#${firstActivity.slug} a`).click();
-    });
-    it("then should navigate the activity detail page", () => {
-      // Assert
-      cy.url().should("include", `/activities/${firstActivity.slug}`);
-    });
-  });
-});
-
-/**
- * Given the detail page of the first activity
- *   then should send request to load the activity information
- *   when data is loaded
- *     then should show an article with activity information
- */
-describe("Given the detail page of the first activity", () => {
-  const API_URL = `${Cypress.env("apiUrl")}/activities?slug=`;
-  const PAGE_URL = "/activities";
-  let publishedActivities: any[] = [];
-  let firstActivity: any = {};
-  beforeEach(() => {
-    cy.fixture("activities").then((activitiesElement) => {
-      const activities = activitiesElement as unknown as any[];
-      publishedActivities = activities.filter((activity: any) => activity.state === "published");
-      firstActivity = publishedActivities[0];
-      cy.intercept("GET", `${API_URL}${firstActivity.slug}`, cy.spy().as("getActivity"));
-      cy.visit(`${PAGE_URL}/${firstActivity.slug}`);
-    });
-  });
-  it("then should send request to load the activity information", () => {
-    cy.get("@getActivity").should("have.been.called");
-  });
-  context("when data is loaded", () => {
-    beforeEach(() => {
-      cy.intercept("GET", `${API_URL}${firstActivity.slug}`, {
-        body: [firstActivity],
+      cy.get("@firstActivityLink").invoke("text").as("activityName");
+      cy.get("@activityName").then((content) => {
+        activityName = content as unknown as string;
+        cy.get("@firstActivityLink").click();
       });
     });
+    it("then should navigate the activity detail page", () => {
+      cy.url().should("include", "/activities/");
+      const activitySlug = activityName.toLowerCase().replace(/ /g, "-");
+      cy.url().should("include", activitySlug);
+    });
     it("then should show an article with activity information", () => {
-      cy.get(`article[name='${firstActivity.slug}']`).should("be.visible");
+      cy.get("article").within(() => {
+        cy.get("h2").contains(activityName, { matchCase: false });
+        cy.get("button").should("contain", "Book");
+      });
     });
   });
 });

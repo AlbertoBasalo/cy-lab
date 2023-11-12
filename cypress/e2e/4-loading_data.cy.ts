@@ -6,7 +6,7 @@
  *     should not show data
  *   when data arrives
  *     should have main list content
- *     should not show an error dialog
+ *     should not show an error message
  *     should not show a loading message
  */
 
@@ -17,13 +17,13 @@ describe("The Home page", () => {
   });
   context("when page is loading data", () => {
     it("should show a loading message", () => {
-      cy.get("aside p[aria-busy='true']").should("exist");
+      cy.get("#loading").should("exist");
     });
-    it("should not show an error dialog", () => {
-      cy.get("aside[name='error']").should("not.exist");
+    it("should not show an error message", () => {
+      cy.get("#error").should("not.exist");
     });
     it("should not show data", () => {
-      cy.get("ul[name='activities-list']").should("not.exist");
+      cy.get("#activities-list").should("not.exist");
     });
   });
   context("when data arrives", () => {
@@ -33,13 +33,13 @@ describe("The Home page", () => {
       cy.wait(WAIT_TIME);
     });
     it("should have main list content", () => {
-      cy.get("ul[name='activities-list']").should("exist");
+      cy.get("#activities-list").should("exist");
     });
-    it("should not show an error dialog", () => {
-      cy.get("aside[name='error']").should("not.exist");
+    it("should not show an error message", () => {
+      cy.get("#error").should("not.exist");
     });
     it("should not show a loading message", () => {
-      cy.get("aside p[aria-busy='true']").should("not.exist");
+      cy.get("#loading").should("not.exist");
     });
   });
 });
