@@ -12,7 +12,7 @@
     "experimentalDecorators": true,
     "sourceMap": false,
     "outDir": "./dist/",
-    "types": ["node"],
+    "types": ["cypress", "node"],
     "lib": ["es2021", "DOM"],
     "paths": {}
   },
