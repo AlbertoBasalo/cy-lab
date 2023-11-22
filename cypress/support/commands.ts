@@ -1,7 +1,23 @@
+/* eslint-disable max-lines */
 /* eslint-disable @typescript-eslint/no-namespace */
 /// <reference types="cypress" />
 
 export const TOKEN_KEY = "user-access-token";
+
+Cypress.Commands.add("loginUI", () => {
+  const loginUrl = "/auth/login";
+  const credentials: any = {
+    email: "jeff@gates.org",
+    password: "1234",
+  };
+  const loginApiUrl = `${Cypress.env("apiUrl")}/login`;
+  cy.visit(loginUrl);
+  cy.intercept("POST", loginApiUrl).as("postLogin");
+  cy.get("#email").type(credentials.email);
+  cy.get("#password").type(credentials.password);
+  cy.get("form button[type=submit]").should("be.enabled").click();
+  cy.wait("@postLogin");
+});
 
 Cypress.Commands.add("login", () => {
   cy.fixture("token.json").then((token) => {
@@ -75,6 +91,7 @@ Cypress.Commands.add("interceptPostBooking", () => {
 declare global {
   namespace Cypress {
     interface Chainable {
+      loginUI(): Chainable<null>;
       login(): Chainable<null>;
       logout(): Chainable<null>;
       registerFlow(): Chainable<null>;

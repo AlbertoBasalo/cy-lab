@@ -1,56 +1,34 @@
-/**
- * Given an already registered and logged user
- *  when visits the home page
- *   should display user menu
- *   should send the token to the server
- */
-describe("Given an already registered and logged user", () => {
-  const PAGE_URL = "http://localhost:4200/";
-  const API_URL = `${Cypress.env("apiUrl")}/activities?state=published`;
-  beforeEach(() => {
-    cy.fixture("token.json").then((token) => {
-      localStorage.setItem("user-access-token", JSON.stringify(token));
-      cy.intercept("GET", API_URL).as("getActivities");
-    });
-  });
-  context("when visits the home page", () => {
-    beforeEach(() => {
-      cy.visit(PAGE_URL);
-    });
-    it("should display user menu", () => {
-      cy.get("#user-menu").should("be.visible");
-    });
-    it("should send the token to the server", () => {
-      cy.wait("@getActivities").then((interception) => {
-        const token = interception.request.headers.authorization;
-        expect(token).to.contain("Bearer");
-      });
-    });
-  });
-});
+// cy commands
 
 /**
- * Given a secured endpoint returning 401
- *  when the user visits a page calling it
- *   should be redirected to the register page
+ * Given an already registered and logged user
+ *  when visits the app
+ *   should display user menu
+ *  when clicks on the user menu
+ *   should display the user profile
  */
-describe("Given a secured endpoint returning 401", () => {
-  const REGISTER_URL = "http://localhost:4200/auth/sign-up";
-  const PAGE_URL = "http://localhost:4200/activities/mines";
-  const API_URL = `${Cypress.env("apiUrl")}/activities?userId=`;
+describe("Given an already registered and logged user", () => {
   beforeEach(() => {
-    cy.intercept("GET", API_URL, {
-      statusCode: 401,
-      body: "Unauthorized",
-    }).as("getSecuredApi");
+    cy.loginUI();
   });
-  context("when the user visits a page calling it", () => {
-    beforeEach(() => {
-      cy.visit(PAGE_URL);
+  context("when visits the app", () => {
+    const profileUrl = "/auth/profile";
+    it("should display user menu", () => {
+      cy.get(`a[href="${profileUrl}"]`) // wait for the user menu
+        .should("be.visible"); // assert it is visible
     });
-    it("should be redirected to the register page", () => {
-      cy.wait("@getSecuredApi");
-      cy.url().should("equal", REGISTER_URL);
+  });
+  context("when clicks on the user menu", () => {
+    const profileUrl = "/auth/profile";
+    beforeEach(() => {
+      cy.get(`a[href="${profileUrl}"]`).click(); // click on the user menu
+    });
+    it("should display the user profile with his 3 activities", () => {
+      const userActivities = 3;
+      cy.url() // wait for the redirection
+        .should("equal", Cypress.config("baseUrl") + profileUrl); // compare with the expected url
+      cy.get("article.activity") // wait for the user activities
+        .should("have.length", userActivities); // assert the number of activities
     });
   });
 });
