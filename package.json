@@ -17,7 +17,7 @@
     "url": "https://github.com/AlbertoBasalo/cy-lab/issues"
   },
   "scripts": {
-    "start": "cypress open --e2e --browser chrome",
+    "start": "cypress open --e2e --browser edge",
     "test": "cypress run ",
     "test:prod": "cypress run --config-file production.config.ts ",
     "test:1": "cypress run --spec '**/1-feat-published-activities/**/*.cy.ts'",
