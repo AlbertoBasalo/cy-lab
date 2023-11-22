@@ -3,7 +3,7 @@ import { defineConfig } from "cypress";
 export default defineConfig({
   e2e: {
     baseUrl: "http://localhost:4200",
-    defaultCommandTimeout: 4000,
+    defaultCommandTimeout: 2000,
     screenshotOnRunFailure: true,
     screenshotsFolder: "cypress/screenshots",
     trashAssetsBeforeRuns: true,

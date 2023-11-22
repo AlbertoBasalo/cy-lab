@@ -40,6 +40,8 @@ npm i -D @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint eslin
 
 - [All the Extensions I use](https://github.com/AlbertoBasalo/dotfiles/blob/main/extensions-i-use.md)
 
+https://chromewebstore.google.com/detail/cypress-recorder/glcapdcacdfkokcmicllhcjigeodacab?pli=1
+
 ### 👩🏼‍⚖️ EsLint rules
 
 - [Fine-tune ESLint rules to write better TypeScript](https://albertobasalo.medium.com/fine-tune-eslint-rules-to-code-better-typescript-e4cabbbe2fa1?sk=fe0c1c07936f2c4a503dbce0272da621)

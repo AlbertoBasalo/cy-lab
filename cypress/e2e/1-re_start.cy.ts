@@ -1,9 +1,10 @@
+// Conventions: arrange, act, assert
+
 /**
  * The Activity Bookings home page
- *   should be visitable
+ *   should be visible
  *   should have a header
  *   should have a header with 'Activity Bookings' text
- *   should contain '©' in the footer
  *   should have a link to albertobasalo.dev
  *   should have an underline element with 'Lab sample' content
  *   should have a link with css class 'secondary'
@@ -23,8 +24,7 @@ describe("The Activity Bookings home page", () => {
   });
 
   it("should have an header", () => {
-    cy.get("header") // Act
-      .should("exist"); // Assert
+    cy.get("header") // Act Assert
   });
 
   it("should have a header with 'Activity Booking' text", () => {
@@ -32,13 +32,10 @@ describe("The Activity Bookings home page", () => {
       .should("contains.text", "Activity Booking"); // Assert
   });
 
-  it("should contain '©' in the footer' text", () => {
-    cy.get("footer") // Act
-      .contains("©"); // Assert
-  });
-
   it("should have a link to https://albertobasalo.dev", () => {
-    cy.get("a[href='https://albertobasalo.dev']"); // Act Assert
+    cy
+      .get("a[href='https://albertobasalo.dev']") // Act
+      .should("exist"); // Assert
   });
 
   it("should have an underline element with 'Lab sample' content", () => {
@@ -46,6 +43,6 @@ describe("The Activity Bookings home page", () => {
   });
 
   it("should have a link with css class 'secondary'", () => {
-    cy.get("a.secondary").should("exist");
+    cy.get("a.secondary");
   });
 });

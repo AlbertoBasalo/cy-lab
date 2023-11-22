@@ -1,3 +1,5 @@
+// Write and click as a user
+
 /**
  * The register form
  *     should have a form with 4 clean inputs and a submit button disabled
@@ -24,10 +26,10 @@ describe("The register form", () => {
   });
   it("should have a form with 4 clean inputs and a submit button disabled", () => {
     cy.get("form")
-      .find("fieldset")
-      .find("input") // Act
+      .find("fieldset") // trace selector
+      .find("input") // executed 'inside' the previous selector
       .should("have.length", expectedInputs); // Assert
-    cy.get("form button[type='submit']") // Act
+    cy.get("form button[type='submit']") // directly selector without trace
       .should("be.disabled"); // Assert
   });
   context("when the users fills the form correctly", () => {
@@ -61,6 +63,7 @@ describe("The register form", () => {
     });
   });
   afterEach(() => {
+    // Arrange after each test
     cy.get("input[type='reset']").click();
   });
 });
