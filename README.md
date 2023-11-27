@@ -1,4 +1,6 @@
-# CyLab
+# CyLab, Cypress Laboratory for Alberto Basalo courses and workshops
+
+[![GitHub license](https://img.shields.io/github/license/AlbertoBasalo/cy-lab?style=for-the-badge)](https://albertobasalo.dev)
 
 Sample code for Cypress development courses by [Alberto Basalo](https://albertobasalo.dev)
 
@@ -8,17 +10,17 @@ Sample code for Cypress development courses by [Alberto Basalo](https://albertob
 git clone https://github.com/AlbertoBasalo/cy-lab
 cd cy-lab
 npm install
-# run cypress
+# run cypress interactive mode
 npm start
-# alternatively add cypress as dev dependency
-npm i -D cypress
+# alternatively run cypress in headless mode
+npm test
 ```
 
 ## Target project (Subject under test)
 
 It is a demo web app with simple but enough functionality. Get a clone, install the dependencies, and follow the instructions to start a local server.
 
-- [Ng Dev demo app](https://github.com/AlbertoBasalo/ng-lab)
+- [Demo app](https://github.com/AlbertoBasalo/ng-lab)
 
 ## 🛠 VS Code configuration
 
