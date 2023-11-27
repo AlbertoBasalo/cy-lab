@@ -1,0 +1,586 @@
+
+
+====================================================================================================
+
+  (Run Starting)
+
+  ┌────────────────────────────────────────────────────────────────────────────────────────────────┐
+  │ Cypress:        13.6.0                                                                         │
+  │ Browser:        Electron 114 (headless)                                                        │
+  │ Node Version:   v20.9.0 (C:\Program Files\nodejs\node.exe)                                     │
+  │ Specs:          14 found (0-start.cy.ts, 1-re_start.cy.ts, 2-routes.cy.ts, 3-register-form.cy. │
+  │                 ts, 4-display_data.cy.ts, 1-feat-published-activities/1_1-activities-list.cy.t │
+  │                 s, 1-feat-published-activities/1_2-activity_detail.cy.ts, 2-feat-security/2_1- │
+  │                 register-flow.cy.ts, 2-...)                                                    │
+  │ Searched:       cypress/e2e/**/*.cy.{js,jsx,ts,tsx}                                            │
+  └────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+
+────────────────────────────────────────────────────────────────────────────────────────────────────
+                                                                                                    
+  Running:  0-start.cy.ts                                                                  (1 of 14)
+
+
+  The Activity Bookings home page
+    √ should be visitable (395ms)
+    √ should have a header (139ms)
+    √ should have a header with 'Activity Bookings' text (136ms)
+    √ should have a link to albertobasalo.dev (111ms)
+    √ should have an underline element with 'Lab sample' content (107ms)
+    √ should have a link with css class 'secondary' (132ms)
+
+
+  6 passing (1s)
+
+
+  (Results)
+
+  ┌────────────────────────────────────────────────────────────────────────────────────────────────┐
+  │ Tests:        6                                                                                │
+  │ Passing:      6                                                                                │
+  │ Failing:      0                                                                                │
+  │ Pending:      0                                                                                │
+  │ Skipped:      0                                                                                │
+  │ Screenshots:  0                                                                                │
+  │ Video:        true                                                                             │
+  │ Duration:     1 second                                                                         │
+  │ Spec Ran:     0-start.cy.ts                                                                    │
+  └────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+
+  (Video)
+
+  -  Video output: C:\code\ab\cy-lab\cypress\videos\0-start.cy.ts.mp4
+
+
+────────────────────────────────────────────────────────────────────────────────────────────────────
+                                                                                                    
+  Running:  1-re_start.cy.ts                                                               (2 of 14)
+
+
+  The Activity Bookings home page
+    √ should be visible (335ms)
+    √ should have an header (122ms)
+    √ should have a header with 'Activity Booking' text (134ms)
+    √ should have a link to https://albertobasalo.dev (123ms)
+    √ should have an underline element with 'Lab sample' content (119ms)
+    √ should have a link with css class 'secondary' (97ms)
+
+
+  6 passing (1s)
+
+
+  (Results)
+
+  ┌────────────────────────────────────────────────────────────────────────────────────────────────┐
+  │ Tests:        6                                                                                │
+  │ Passing:      6                                                                                │
+  │ Failing:      0                                                                                │
+  │ Pending:      0                                                                                │
+  │ Skipped:      0                                                                                │
+  │ Screenshots:  0                                                                                │
+  │ Video:        true                                                                             │
+  │ Duration:     1 second                                                                         │
+  │ Spec Ran:     1-re_start.cy.ts                                                                 │
+  └────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+
+  (Video)
+
+  -  Video output: C:\code\ab\cy-lab\cypress\videos\1-re_start.cy.ts.mp4
+
+
+────────────────────────────────────────────────────────────────────────────────────────────────────
+                                                                                                    
+  Running:  2-routes.cy.ts                                                                 (3 of 14)
+
+
+  The Activity Bookings navigation links
+    √ should have a link to the repository page (311ms)
+    √ should have a header link with 'activities' text (137ms)
+    √ should have a 'loginLink' id (128ms)
+    √ should navigate to the register page (234ms)
+    √ should not have broken links (1967ms)
+
+
+  5 passing (3s)
+
+
+  (Results)
+
+  ┌────────────────────────────────────────────────────────────────────────────────────────────────┐
+  │ Tests:        5                                                                                │
+  │ Passing:      5                                                                                │
+  │ Failing:      0                                                                                │
+  │ Pending:      0                                                                                │
+  │ Skipped:      0                                                                                │
+  │ Screenshots:  0                                                                                │
+  │ Video:        true                                                                             │
+  │ Duration:     2 seconds                                                                        │
+  │ Spec Ran:     2-routes.cy.ts                                                                   │
+  └────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+
+  (Video)
+
+  -  Video output: C:\code\ab\cy-lab\cypress\videos\2-routes.cy.ts.mp4
+
+
+────────────────────────────────────────────────────────────────────────────────────────────────────
+                                                                                                    
+  Running:  3-register-form.cy.ts                                                          (4 of 14)
+
+
+  The register form
+    √ should have a form with 4 clean inputs and a submit button disabled (340ms)
+    when the users fills the form correctly
+      √ should allow to submit the form (1489ms)
+      √ should mark all inputs as valid (1372ms)
+    when the user resets the form
+      √ should clear the form when the reset button is clicked (1222ms)
+
+
+  4 passing (5s)
+
+
+  (Results)
+
+  ┌────────────────────────────────────────────────────────────────────────────────────────────────┐
+  │ Tests:        4                                                                                │
+  │ Passing:      4                                                                                │
+  │ Failing:      0                                                                                │
+  │ Pending:      0                                                                                │
+  │ Skipped:      0                                                                                │
+  │ Screenshots:  0                                                                                │
+  │ Video:        true                                                                             │
+  │ Duration:     4 seconds                                                                        │
+  │ Spec Ran:     3-register-form.cy.ts                                                            │
+  └────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+
+  (Video)
+
+  -  Video output: C:\code\ab\cy-lab\cypress\videos\3-register-form.cy.ts.mp4
+
+
+────────────────────────────────────────────────────────────────────────────────────────────────────
+                                                                                                    
+  Running:  4-display_data.cy.ts                                                           (5 of 14)
+
+
+  Given The Activities page
+    when data arrives
+      √ then should have main list content (327ms)
+      √ then should not show an error message (176ms)
+      √ then should not show a pending message (154ms)
+
+
+  3 passing (740ms)
+
+
+  (Results)
+
+  ┌────────────────────────────────────────────────────────────────────────────────────────────────┐
+  │ Tests:        3                                                                                │
+  │ Passing:      3                                                                                │
+  │ Failing:      0                                                                                │
+  │ Pending:      0                                                                                │
+  │ Skipped:      0                                                                                │
+  │ Screenshots:  0                                                                                │
+  │ Video:        true                                                                             │
+  │ Duration:     0 seconds                                                                        │
+  │ Spec Ran:     4-display_data.cy.ts                                                             │
+  └────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+
+  (Video)
+
+  -  Video output: C:\code\ab\cy-lab\cypress\videos\4-display_data.cy.ts.mp4
+
+
+────────────────────────────────────────────────────────────────────────────────────────────────────
+                                                                                                    
+  Running:  1-feat-published-activities/1_1-activities-list.cy.ts                          (6 of 14)
+
+
+  Given the Published Activities list
+    when the data is loaded
+      √ then should show the list counter (341ms)
+      √ then should show the correct number of items (191ms)
+      √ then should show the same counter and number of activities (168ms)
+      √ then should show the name with a link to the activity detail (289ms)
+      √ THEN should show activities name, date and price (166ms)
+
+
+  5 passing (1s)
+
+
+  (Results)
+
+  ┌────────────────────────────────────────────────────────────────────────────────────────────────┐
+  │ Tests:        5                                                                                │
+  │ Passing:      5                                                                                │
+  │ Failing:      0                                                                                │
+  │ Pending:      0                                                                                │
+  │ Skipped:      0                                                                                │
+  │ Screenshots:  0                                                                                │
+  │ Video:        true                                                                             │
+  │ Duration:     1 second                                                                         │
+  │ Spec Ran:     1-feat-published-activities/1_1-activities-list.cy.ts                            │
+  └────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+
+  (Video)
+
+  -  Video output: C:\code\ab\cy-lab\cypress\videos\1-feat-published-activities\1_1-activities-list.cy.ts.mp4
+
+
+────────────────────────────────────────────────────────────────────────────────────────────────────
+                                                                                                    
+  Running:  1-feat-published-activities/1_2-activity_detail.cy.ts                          (7 of 14)
+
+
+  Given the list of activities at the activities page
+    when click on a activities page activity link
+      √ then should navigate the activity detail page (505ms)
+      √ and then should show an article with activity information (343ms)
+      √ and should show a button to book the activity (310ms)
+
+
+  3 passing (1s)
+
+
+  (Results)
+
+  ┌────────────────────────────────────────────────────────────────────────────────────────────────┐
+  │ Tests:        3                                                                                │
+  │ Passing:      3                                                                                │
+  │ Failing:      0                                                                                │
+  │ Pending:      0                                                                                │
+  │ Skipped:      0                                                                                │
+  │ Screenshots:  0                                                                                │
+  │ Video:        true                                                                             │
+  │ Duration:     1 second                                                                         │
+  │ Spec Ran:     1-feat-published-activities/1_2-activity_detail.cy.ts                            │
+  └────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+
+  (Video)
+
+  -  Video output: C:\code\ab\cy-lab\cypress\videos\1-feat-published-activities\1_2-activity_detail.cy.ts.mp4
+
+
+────────────────────────────────────────────────────────────────────────────────────────────────────
+                                                                                                    
+  Running:  2-feat-security/2_1-register-flow.cy.ts                                        (8 of 14)
+
+
+  Given a user at login flow
+    when types valid credentials
+      √ should send the form data to the server and redirect user to home and display user menu (1293ms)
+    when types invalid credentials
+      √ should get 400 go home and display anonymous menu (898ms)
+
+
+  2 passing (2s)
+
+
+  (Results)
+
+  ┌────────────────────────────────────────────────────────────────────────────────────────────────┐
+  │ Tests:        2                                                                                │
+  │ Passing:      2                                                                                │
+  │ Failing:      0                                                                                │
+  │ Pending:      0                                                                                │
+  │ Skipped:      0                                                                                │
+  │ Screenshots:  0                                                                                │
+  │ Video:        true                                                                             │
+  │ Duration:     2 seconds                                                                        │
+  │ Spec Ran:     2-feat-security/2_1-register-flow.cy.ts                                          │
+  └────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+
+  (Video)
+
+  -  Video output: C:\code\ab\cy-lab\cypress\videos\2-feat-security\2_1-register-flow.cy.ts.mp4
+
+
+────────────────────────────────────────────────────────────────────────────────────────────────────
+                                                                                                    
+  Running:  2-feat-security/2_2-authorized-flow.cy.ts                                      (9 of 14)
+
+
+  Given an already registered and logged user
+    when visits the app
+      √ should display user menu (966ms)
+    when clicks on the user menu
+      √ should display the user profile with his 3 activities (875ms)
+
+
+  2 passing (2s)
+
+
+  (Results)
+
+  ┌────────────────────────────────────────────────────────────────────────────────────────────────┐
+  │ Tests:        2                                                                                │
+  │ Passing:      2                                                                                │
+  │ Failing:      0                                                                                │
+  │ Pending:      0                                                                                │
+  │ Skipped:      0                                                                                │
+  │ Screenshots:  0                                                                                │
+  │ Video:        true                                                                             │
+  │ Duration:     1 second                                                                         │
+  │ Spec Ran:     2-feat-security/2_2-authorized-flow.cy.ts                                        │
+  └────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+
+  (Video)
+
+  -  Video output: C:\code\ab\cy-lab\cypress\videos\2-feat-security\2_2-authorized-flow.cy.ts.mp4
+
+
+────────────────────────────────────────────────────────────────────────────────────────────────────
+                                                                                                    
+  Running:  3-feat-owner-activities/3_1-profile-activities.cy.ts                          (10 of 14)
+
+
+  Given a logged in user
+    When visiting the profile page
+      √ Then should see its own activities (1284ms)
+
+
+  1 passing (1s)
+
+
+  (Results)
+
+  ┌────────────────────────────────────────────────────────────────────────────────────────────────┐
+  │ Tests:        1                                                                                │
+  │ Passing:      1                                                                                │
+  │ Failing:      0                                                                                │
+  │ Pending:      0                                                                                │
+  │ Skipped:      0                                                                                │
+  │ Screenshots:  0                                                                                │
+  │ Video:        true                                                                             │
+  │ Duration:     1 second                                                                         │
+  │ Spec Ran:     3-feat-owner-activities/3_1-profile-activities.cy.ts                             │
+  └────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+
+  (Video)
+
+  -  Video output: C:\code\ab\cy-lab\cypress\videos\3-feat-owner-activities\3_1-profile-activities.cy.ts.mp4
+
+
+────────────────────────────────────────────────────────────────────────────────────────────────────
+                                                                                                    
+  Running:  3-feat-owner-activities/3_2-create-activity.cy.ts                             (11 of 14)
+
+
+  Given a registered user on the create activity page
+    When fill the form with valid data
+      1) Then should send a post request to the API
+
+
+  0 passing (5s)
+  1 failing
+
+  1) Given a registered user on the create activity page
+       When fill the form with valid data
+         Then should send a post request to the API:
+     AssertionError: Timed out retrying after 2000ms: Expected to find element: `#activities-list`, but never found it.
+      at Context.eval (webpack://cy-lab/./cypress/e2e/3-feat-owner-activities/3_2-create-activity.cy.ts:38:0)
+
+
+
+
+  (Results)
+
+  ┌────────────────────────────────────────────────────────────────────────────────────────────────┐
+  │ Tests:        1                                                                                │
+  │ Passing:      0                                                                                │
+  │ Failing:      1                                                                                │
+  │ Pending:      0                                                                                │
+  │ Skipped:      0                                                                                │
+  │ Screenshots:  1                                                                                │
+  │ Video:        true                                                                             │
+  │ Duration:     4 seconds                                                                        │
+  │ Spec Ran:     3-feat-owner-activities/3_2-create-activity.cy.ts                                │
+  └────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+
+  (Screenshots)
+
+  -  C:\code\ab\cy-lab\cypress\screenshots\3-feat-owner-activities\3_2-create-activit     (1280x720)
+     y.cy.ts\Given a registered user on the create activity page -- When fill the for               
+     m with valid data -- Then should send a post request to the API (failed).png                   
+
+
+  (Video)
+
+  -  Video output: C:\code\ab\cy-lab\cypress\videos\3-feat-owner-activities\3_2-create-activity.cy.ts.mp4
+
+
+────────────────────────────────────────────────────────────────────────────────────────────────────
+                                                                                                    
+  Running:  4-feat-participant-activities/4_1-book-activity.cy.ts                         (12 of 14)
+
+
+  Given I am a valid logged-in user visiting the first published activity page
+    When I click on the 'Book' button
+      1) Then I should see a confirmation message
+
+
+  0 passing (3s)
+  1 failing
+
+  1) Given I am a valid logged-in user visiting the first published activity page
+       When I click on the 'Book' button
+         Then I should see a confirmation message:
+     AssertionError: Timed out retrying after 2000ms: Expected to find element: `h3`, but never found it.
+      at Context.eval (webpack://cy-lab/./cypress/e2e/4-feat-participant-activities/4_1-book-activity.cy.ts:25:0)
+
+
+
+
+  (Results)
+
+  ┌────────────────────────────────────────────────────────────────────────────────────────────────┐
+  │ Tests:        1                                                                                │
+  │ Passing:      0                                                                                │
+  │ Failing:      1                                                                                │
+  │ Pending:      0                                                                                │
+  │ Skipped:      0                                                                                │
+  │ Screenshots:  1                                                                                │
+  │ Video:        true                                                                             │
+  │ Duration:     2 seconds                                                                        │
+  │ Spec Ran:     4-feat-participant-activities/4_1-book-activity.cy.ts                            │
+  └────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+
+  (Screenshots)
+
+  -  C:\code\ab\cy-lab\cypress\screenshots\4-feat-participant-activities\4_1-book-act     (1280x720)
+     ivity.cy.ts\Given I am a valid logged-in user visiting the first published activ               
+     ity page -- When I click on the 'Book' button -- Then I should see a confirmatio               
+     n message (failed).png                                                                         
+
+
+  (Video)
+
+  -  Video output: C:\code\ab\cy-lab\cypress\videos\4-feat-participant-activities\4_1-book-activity.cy.ts.mp4
+
+
+────────────────────────────────────────────────────────────────────────────────────────────────────
+                                                                                                    
+  Running:  4-feat-participant-activities/4_2-view-my-activities.cy.ts                    (13 of 14)
+
+
+  Given I am a valid logged-in user
+    When visiting my profile page
+      √ Then I should see my bookings (722ms)
+
+
+  1 passing (800ms)
+
+
+  (Results)
+
+  ┌────────────────────────────────────────────────────────────────────────────────────────────────┐
+  │ Tests:        1                                                                                │
+  │ Passing:      1                                                                                │
+  │ Failing:      0                                                                                │
+  │ Pending:      0                                                                                │
+  │ Skipped:      0                                                                                │
+  │ Screenshots:  0                                                                                │
+  │ Video:        true                                                                             │
+  │ Duration:     0 seconds                                                                        │
+  │ Spec Ran:     4-feat-participant-activities/4_2-view-my-activities.cy.ts                       │
+  └────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+
+  (Video)
+
+  -  Video output: C:\code\ab\cy-lab\cypress\videos\4-feat-participant-activities\4_2-view-my-activities.cy.ts.mp4
+
+
+────────────────────────────────────────────────────────────────────────────────────────────────────
+                                                                                                    
+  Running:  5-search/5_1-search-activities.cy.ts                                          (14 of 14)
+
+
+  Given I am a valid logged-in user visiting the activities page
+    When I search for 'diving'
+      √ Then I should see a list of activities containing 'diving' in their title (983ms)
+
+
+  1 passing (1s)
+
+
+  (Results)
+
+  ┌────────────────────────────────────────────────────────────────────────────────────────────────┐
+  │ Tests:        1                                                                                │
+  │ Passing:      1                                                                                │
+  │ Failing:      0                                                                                │
+  │ Pending:      0                                                                                │
+  │ Skipped:      0                                                                                │
+  │ Screenshots:  0                                                                                │
+  │ Video:        true                                                                             │
+  │ Duration:     1 second                                                                         │
+  │ Spec Ran:     5-search/5_1-search-activities.cy.ts                                             │
+  └────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+
+  (Video)
+
+  -  Video output: C:\code\ab\cy-lab\cypress\videos\5-search\5_1-search-activities.cy.ts.mp4
+
+
+====================================================================================================
+
+  (Run Finished)
+
+
+       Spec                                              Tests  Passing  Failing  Pending  Skipped  
+  ┌────────────────────────────────────────────────────────────────────────────────────────────────┐
+  │ √  0-start.cy.ts                            00:01        6        6        -        -        - │
+  ├────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ √  1-re_start.cy.ts                         00:01        6        6        -        -        - │
+  ├────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ √  2-routes.cy.ts                           00:02        5        5        -        -        - │
+  ├────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ √  3-register-form.cy.ts                    00:04        4        4        -        -        - │
+  ├────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ √  4-display_data.cy.ts                     743ms        3        3        -        -        - │
+  ├────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ √  1-feat-published-activities/1_1-act      00:01        5        5        -        -        - │
+  │    ivities-list.cy.ts                                                                          │
+  ├────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ √  1-feat-published-activities/1_2-act      00:01        3        3        -        -        - │
+  │    ivity_detail.cy.ts                                                                          │
+  ├────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ √  2-feat-security/2_1-register-flow.c      00:02        2        2        -        -        - │
+  │    y.ts                                                                                        │
+  ├────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ √  2-feat-security/2_2-authorized-flow      00:01        2        2        -        -        - │
+  │    .cy.ts                                                                                      │
+  ├────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ √  3-feat-owner-activities/3_1-profile      00:01        1        1        -        -        - │
+  │    -activities.cy.ts                                                                           │
+  ├────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ ×  3-feat-owner-activities/3_2-create-      00:04        1        -        1        -        - │
+  │    activity.cy.ts                                                                              │
+  ├────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ ×  4-feat-participant-activities/4_1-b      00:02        1        -        1        -        - │
+  │    ook-activity.cy.ts                                                                          │
+  ├────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ √  4-feat-participant-activities/4_2-v      802ms        1        1        -        -        - │
+  │    iew-my-activities.cy.ts                                                                     │
+  ├────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ √  5-search/5_1-search-activities.cy.t      00:01        1        1        -        -        - │
+  │    s                                                                                           │
+  └────────────────────────────────────────────────────────────────────────────────────────────────┘
+    ×  2 of 14 failed (14%)                     00:28       41       39        2        -        -  
+

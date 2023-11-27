@@ -3,7 +3,7 @@ import { defineConfig } from "cypress";
 export default defineConfig({
   e2e: {
     baseUrl: "http://localhost:4200",
-    defaultCommandTimeout: 2000,
+    defaultCommandTimeout: 1000,
     screenshotOnRunFailure: false,
     video: false,
     viewportHeight: 768,
