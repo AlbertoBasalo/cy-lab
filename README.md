@@ -1,4 +1,6 @@
-# CyLab, Cypress Laboratory for Alberto Basalo courses and workshops
+# CyLab,
+
+> Cypress Laboratory for Alberto Basalo courses and workshops
 
 [![GitHub license](https://img.shields.io/github/license/AlbertoBasalo/cy-lab?style=for-the-badge)](https://albertobasalo.dev)
 
@@ -20,7 +22,7 @@ npm test
 
 It is a demo web app with simple but enough functionality. Get a clone, install the dependencies, and follow the instructions to start a local server.
 
-- [Demo app](https://github.com/AlbertoBasalo/ng-lab)
+- [**Demo app**](https://github.com/AlbertoBasalo/ng-lab)
 
 ## 🛠 VS Code configuration
 
