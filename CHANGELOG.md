@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [14.0.0](https://github.com/AlbertoBasalo/cy-lab/compare/v12.1.0...v14.0.0) (2023-11-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* update npm to cy version
+
+* update npm to cy version ([1daa24e](https://github.com/AlbertoBasalo/cy-lab/commit/1daa24e8fb247ed3f6a476239c54ad8d3cf98ed5))
+
 ## 12.1.0 (2023-11-27)
 
 
