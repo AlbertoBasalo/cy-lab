@@ -9,7 +9,7 @@
  *    Then should send a request to the API
  */
 
-import { getUserAccessToken } from "../../support/e2e";
+import { getUserAccessToken } from "../../cypress/support/e2e";
 
 describe("Given an activity owner", () => {
   const URL_MY_ACTIVITIES = "http://localhost:4200/activities/mines";
