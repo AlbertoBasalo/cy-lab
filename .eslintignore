@@ -16,4 +16,5 @@ yarn-error.log
 /typings
 /.scannerwork
 
+/cypress/screenshots
 /cypress/videos
