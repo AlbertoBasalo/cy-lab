@@ -1,0 +1,8 @@
+{
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhbUBtdXNrLm9yZyIsImlhdCI6MTcwMTA4MjE5NCwiZXhwIjoxNzAxMDg1Nzk0LCJzdWIiOiIxIn0.KoNIZQ5mWDpbiyVGfgSBmPbx93oTNbZH7Zh94DEdtPM",
+  "user": {
+    "id": 1,
+    "name": "Sam Musk",
+    "email": "sam@musk.org"
+  }
+}

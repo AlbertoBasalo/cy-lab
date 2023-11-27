@@ -2,9 +2,9 @@
 
 /**
  * Given a user at login flow
- *  when sends valid new credentials
+ *  when types valid credentials
  *    should send the form data to the server and redirect user to home and display user menu
- *  when sends invalid new credentials
+ *  when types invalid  credentials
  *    should get 400 go home and display anonymous menu
  */
 describe("Given a user at login flow", () => {
@@ -20,7 +20,7 @@ describe("Given a user at login flow", () => {
     cy.intercept("POST", loginApiUrl).as("postLogin");
     cy.visit(loginUrl);
   });
-  context("when sends valid new credentials", () => {
+  context("when types valid credentials", () => {
     beforeEach(() => {
       cy.get("#email").type(credentials.email);
       cy.get("#password").type(credentials.password);
@@ -38,7 +38,7 @@ describe("Given a user at login flow", () => {
     });
   });
 
-  context("when sends invalid new credentials", () => {
+  context("when types invalid credentials", () => {
     beforeEach(() => {
       cy.get("#email").type(credentials.email);
       cy.get("#password").type("wrong_password");

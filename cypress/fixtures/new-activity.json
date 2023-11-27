@@ -1,0 +1,8 @@
+{
+  "name": "My test adventure",
+  "date": "2024-11-24",
+  "location": "test",
+  "price": 100,
+  "maxParticipants": 10,
+  "minParticipants": 5
+}

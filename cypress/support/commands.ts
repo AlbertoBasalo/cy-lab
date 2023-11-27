@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-namespace */
 /// <reference types="cypress" />
 
-export const TOKEN_KEY = "user-access-token";
+export const TOKEN_KEY = "lab_user-token";
 
 Cypress.Commands.add("loginUI", () => {
   const loginUrl = "/auth/login";
@@ -20,8 +20,8 @@ Cypress.Commands.add("loginUI", () => {
 });
 
 Cypress.Commands.add("login", () => {
-  cy.fixture("token.json").then((token) => {
-    localStorage.setItem(TOKEN_KEY, JSON.stringify(token));
+  cy.fixture("user-token.json").then((userToken) => {
+    localStorage.setItem(TOKEN_KEY, JSON.stringify(userToken));
   });
 });
 
