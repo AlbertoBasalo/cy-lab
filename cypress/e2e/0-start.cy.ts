@@ -25,9 +25,9 @@ describe("The Activity Bookings home page", () => {
     cy.visit("http://localhost:4200/");
     cy.get('[href="https://albertobasalo.dev"]').should("exist");
   });
-  it("should have an underline element with 'Lab sample' content", () => {
+  it("should have an italic element with 'Lab sample' content", () => {
     cy.visit("http://localhost:4200/");
-    cy.get("u").contains("Lab sample");
+    cy.get("i").contains("Lab sample");
   });
   it("should have a link with css class 'secondary'", () => {
     cy.visit("http://localhost:4200/");
