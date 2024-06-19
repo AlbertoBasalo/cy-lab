@@ -18,6 +18,22 @@ npm start
 npm test
 ```
 
+## Alternative
+
+```bash
+# create new npm project
+npm init -y
+# add cypress as dependency
+npm i cypress
+# add typescript as dependency
+npm i typescript
+# add several dev dependencies
+npm i -D @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint eslint-config-prettier eslint-plugin-prettier prettier
+npm i -D @types/node
+# add cypress open to start script and run it
+npm start
+```
+
 ## Target project (Subject under test)
 
 It is a demo web app with simple but enough functionality. Get a clone, install the dependencies, and follow the instructions to start a local server.
