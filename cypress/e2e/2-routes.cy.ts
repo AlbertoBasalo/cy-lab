@@ -22,9 +22,9 @@ describe("The Activity Bookings navigation links", () => {
   it("should have a link to the repository page", () => {
     cy.get(`a[href='${repoHref}']`);
   });
-  it("should have a header link with 'activities' text", () => {
+  it("should have a header link with 'login' text", () => {
     cy.get("header a") // Act
-      .contains("activities", { matchCase: false }); // Assert
+      .contains("login", { matchCase: false }); // Assert
   });
   it("should have a 'loginLink' id", () => {
     cy.get(`a[href='${loginHref}']`); // Act Assert

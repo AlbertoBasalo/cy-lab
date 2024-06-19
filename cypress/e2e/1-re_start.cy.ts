@@ -38,8 +38,8 @@ describe("The Activity Bookings home page", () => {
       .should("exist"); // Assert
   });
 
-  it("should have an underline element with 'Lab sample' content", () => {
-    cy.get("u").contains("Lab sample");
+  it("should have an italic element with 'Lab sample' content", () => {
+    cy.get("i").contains("Lab sample");
   });
 
   it("should have a link with css class 'secondary'", () => {
