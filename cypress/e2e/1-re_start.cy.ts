@@ -1,4 +1,4 @@
-// Conventions: arrange, act, assert
+// * Configuration, Performance and Conventions: arrange, act, assert
 
 /**
  * The Activity Bookings home page
@@ -10,39 +10,38 @@
  *   should have a link with css class 'secondary'
  */
 
-describe("The Activity Bookings home page", () => {
-  // before(() => {
-  //   cy.visit("http://localhost:4200/");
+describe('The Activity Bookings home page', () => {
+  beforeEach(() => {
+    // * Use the baseUrl from cypress.config.ts
+    cy.visit(''); // Arrange
+  });
+
+  it('should be visible', () => {
+    cy.get('body') // act
+      .should('be.visible'); // Assert
+  });
+
+  // ! redundant test
+  // it("should have an header", () => {
+  //   cy.get("header") // Act Assert
   // });
 
-  beforeEach(() => {
-    cy.visit("http://localhost:4200/"); // Arrange
+  it(`should have a header with 'Activity Booking' text`, () => {
+    cy.get('header') // Act
+      .should('contains.text', 'Activity Booking'); // Assert
   });
 
-  it("should be visible", () => {
-    cy.get("body").should("be.visible");
+  // * Grouped assertions for better performance
+
+  it(`should have a link to https://albertobasalo.dev and an italic element with 'Lab sample' content a link with css class 'secondary`, () => {
+    cy.get(`a[href="https://albertobasalo.dev"]`).should('exist');
+    cy.get('i').contains('Lab sample');
+    cy.get('a.secondary');
   });
 
-  it("should have an header", () => {
-    cy.get("header") // Act Assert
-  });
+  // it("should have an italic element with 'Lab sample' content", () => {
+  // });
 
-  it("should have a header with 'Activity Booking' text", () => {
-    cy.get("header") // Act
-      .should("contains.text", "Activity Booking"); // Assert
-  });
-
-  it("should have a link to https://albertobasalo.dev", () => {
-    cy
-      .get("a[href='https://albertobasalo.dev']") // Act
-      .should("exist"); // Assert
-  });
-
-  it("should have an italic element with 'Lab sample' content", () => {
-    cy.get("i").contains("Lab sample");
-  });
-
-  it("should have a link with css class 'secondary'", () => {
-    cy.get("a.secondary");
-  });
+  // it("should have a link with css class 'secondary'", () => {
+  // });
 });
