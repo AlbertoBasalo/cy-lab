@@ -13,7 +13,7 @@ describe('Given The Activities page', () => {
     cy.visit('');
   });
   context('When no API server is available', () => {
-    it('Then should not display a busy message \n Nor an activities-list \n And should display an error message', () => {
+    it('Then should not display a busy message Nor an activities-list And should display an error message', () => {
       cy.get('[aria-busy="true"]').should('not.exist');
       cy.get('#activities-list').should('not.exist');
       cy.get('[aria-invalid="true"]').should('exist');

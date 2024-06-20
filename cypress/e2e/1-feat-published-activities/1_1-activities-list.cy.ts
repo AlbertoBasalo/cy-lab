@@ -2,52 +2,60 @@
 
 /**
  * Given the Published Activities list
- *   when the data is loaded
- *    then should show the list counter
- *    then should show the correct number of items
- *    then should show the same counter and number of activities
- *    then should show the name with a link to the activity detail
- *    then should show activities name, date and price
+ *   When the data is loaded
+ *    Then should display the list counter And the correct number of items
+ *    Then should display the name with a link to the activity detail
+ *    Then should display activities name, date and price
  */
 
-describe("Given the Published Activities list", () => {
-  const expectedActivities = 8;
-  const expectedFirstActivity = { name: "Standup Surfing", slug: "standup-surfing" };
+describe('Given the Published Activities list', () => {
+  const expectedActivities = 17;
+  const expectedFirstActivity = { name: 'Standup Surfing', slug: 'standup-surfing' };
   beforeEach(() => {
-    cy.visit("/activities");
+    cy.visit('');
   });
-  context("when the data is loaded", () => {
+  context('When the data is loaded', () => {
     beforeEach(() => {
-      cy.get("#activities-list").as("listContent");
+      // * Alias to be used in later tests
+      cy.get('#activities-list').as('listContent');
     });
-    it("then should show the list counter", () => {
-      cy.get("#activities-count").should("have.text", expectedActivities);
+    it('Then should display the list counter And the correct number of items', () => {
+      cy.get('#activities-count').should('have.text', expectedActivities); // assert with predefined value
+      cy.get('@listContent') // reusing the alias with @
+        .find('[id^="activity-id-"]') // complex selector
+        .should('have.length', expectedActivities);
     });
-    it("then should show the correct number of items", () => {
-      cy.get("#activities-list").find("li").should("have.length", expectedActivities);
-    });
-    it("then should show the same counter and number of activities", () => {
-      cy.get("#activities-count").invoke("text").as("activitiesCount");
-      cy.get<number>("@activitiesCount").then((activitiesCount) => {
-        cy.log("activitiesCount", activitiesCount);
-        cy.get("@listContent").find("li").should("have.length", activitiesCount);
+    // ! Another way to do the same test
+    it('Then should display the same counter And number of activities', () => {
+      cy.get('#activities-count')
+        .invoke('text') // * call a function on the element
+        .as('activitiesCount');
+      // * Using inner function to get the value of the alias
+      cy.get<number>('@activitiesCount').then((activitiesCount) => {
+        cy.log('activitiesCount', activitiesCount);
+        cy.get('@listContent').find('[id^="activity-id-"]').should('have.length', activitiesCount);
       });
     });
-    it("then should show the name with a link to the activity detail", () => {
-      cy.get("#activities-list")
-        .find("li")
-        .first()
-        .find("a")
-        .should("have.text", expectedFirstActivity.name)
-        .should("have.attr", "href", `/activities/${expectedFirstActivity.slug}`);
+    it('Then should display the name with a link to the activity detail', () => {
+      cy.get('@listContent')
+        .find('[id^="activity-id-"]')
+        .first() // get the first child
+        .find('a')
+        .should('have.text', expectedFirstActivity.name)
+        .invoke('attr', 'href') // get the href attribute 
+        .should('contain', expectedFirstActivity.slug); // include the slug
     });
-    it("THEN should show activities name, date and price", () => {
-      cy.get("@listContent").find("li").first().as("firstActivityElement");
-      cy.get("@firstActivityElement").within(() => {
-        cy.get('[itemprop="name"]');
-        cy.get('[itemprop="date"]');
-        cy.get('[itemprop="price"]');
-      });
+    it('Then should display activities name, date and price', () => {
+      cy.get('@listContent')
+        .children() // direct descendants
+        .first() // the first of the collection
+        .as('firstActivityElement'); // save the alias
+      cy.get('@firstActivityElement')
+        .within(() => { // work inside the element
+          cy.get('[itemprop="name"]');
+          cy.get('[itemprop="date"]');
+          cy.get('[itemprop="price"]');
+        });
     });
   });
 });

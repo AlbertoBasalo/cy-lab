@@ -1,19 +1,19 @@
 // invoke, then
 
 /**
- * Given the list of activities at the activities page
+ * Given the list of activities 
  *  when click on a activities page activity link
- *    then should navigate the activity detail page
- *    and then should show an article with activity information
- *    and should show a button to book the activity
+ *    Then should navigate the book activity page
+ *    And should display an article with activity information
+ *    And should display info related to participants
  */
-describe("Given the list of activities at the activities page", () => {
+describe("Given the list of activities for an anonymous user", () => {
   beforeEach(() => {
-    cy.visit("/activities");
+    cy.visit("");
     cy.get("#activities-list").as("listContent");
-    cy.get("@listContent").find("li").first().find("a").as("firstActivityLink");
+    cy.get("@listContent").find("div").first().find("a").as("firstActivityLink");
   });
-  context("when click on a activities page activity link", () => {
+  context("When click on a activities page activity link", () => {
     let activityName = ""; // to be populated later
     beforeEach(() => {
       cy.get("@firstActivityLink")
@@ -24,18 +24,18 @@ describe("Given the list of activities at the activities page", () => {
         });
       cy.get("@firstActivityLink").click();
     });
-    it("then should navigate the activity detail page", () => {
-      cy.url().should("include", "/activities/");
+    it("Then should navigate the book activity page", () => {
       const activitySlug = activityName.toLowerCase().replace(/ /g, "-");
       cy.url().should("include", activitySlug);
     });
-    it("and then should show an article with activity information", () => {
+    it("And should display an article with activity information", () => {
       cy.get("article h2").contains(activityName, { matchCase: false });
     });
-    it("and should show a button to book the activity", () => {
+    it("and should display info related to participants", () => {
       cy.get("article").within(() => {
-        cy.get("button").should("contain", "Book");
+        cy.get("li").should("contain", "Participants");
       });
     });
   });
 });
+
