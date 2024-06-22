@@ -6,10 +6,10 @@ export default defineConfig({
     defaultCommandTimeout: 4000,
     screenshotOnRunFailure: false,
     video: false,
-    viewportHeight: 768,
+    viewportHeight: 1366,
     viewportWidth: 1024,
     env: {
-      apiUrl: "http://localhost:3000",
+      apiUrl: "http://localhost:3000/api",
     },
     setupNodeEvents(on, config) {
       // implement node event listeners here

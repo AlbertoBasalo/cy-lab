@@ -7,7 +7,7 @@ export const TOKEN_KEY = "lab_user-token";
 Cypress.Commands.add("loginUI", () => {
   const loginUrl = "/auth/login";
   const credentials: any = {
-    email: "jeff@gates.org",
+    email: "test@valid.org",
     password: "1234",
   };
   const loginApiUrl = `${Cypress.env("apiUrl")}/login`;

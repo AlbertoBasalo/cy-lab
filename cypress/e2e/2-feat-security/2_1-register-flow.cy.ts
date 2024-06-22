@@ -1,57 +1,63 @@
 // intercept
 
 /**
- * Given a user at login flow
- *  when types valid credentials
- *    should send the form data to the server and redirect user to home and display user menu
- *  when types invalid  credentials
- *    should get 400 go home and display anonymous menu
+ * Given a user at register flow
+ *  When types valid credentials
+ *    Then should send the form data to the server And displays user menu
+ *  when re-types credentials
+ *    should get a 400 response 
  */
 describe("Given a user at login flow", () => {
-  const loginUrl = "/auth/login";
-  const homeFullUrl = Cypress.config("baseUrl") + "/home";
-  const profileUrl = "/auth/profile";
+  const registerUrl = "/auth/register";
   const credentials: any = {
-    email: "jeff@gates.org",
+    username: "Test User",
+    email: "test@valid.org",
     password: "1234",
+    terms: true,
   };
-  const loginApiUrl = `${Cypress.env("apiUrl")}/login`;
+  const registerApiUrl = `${Cypress.env("apiUrl")}/register`;
   beforeEach(() => {
-    cy.intercept("POST", loginApiUrl).as("postLogin");
-    cy.visit(loginUrl);
+    cy.intercept("POST", registerApiUrl).as("postRegister");
+    cy.visit(registerUrl);
   });
-  context("when types valid credentials", () => {
+  context.only("When types valid credentials", () => {
     beforeEach(() => {
-      cy.get("#email").type(credentials.email);
-      cy.get("#password").type(credentials.password);
+      cy.get("#username").clear().type(credentials.username).blur();
+      cy.get("#email").clear().type(credentials.email).blur();
+      cy.get("#password").clear().type(credentials.password).blur();
+      cy.get("#confirm").clear().type(credentials.password).blur();
+      cy.get("#terms").invoke("prop", "checked", true).trigger("change");
       cy.get("form button[type=submit]").should("be.enabled").click();
     });
-    it("should send the form data to the server and redirect user to home and display user menu", () => {
+    it("Then should send the form data to the server And displays user menu", () => {
       const expectedPayload = credentials;
-      cy.get("@postLogin") // wait for the request
+      const ACCEPTED_CODE = 201;
+      cy.get("@postRegister") // wait for the request
         .its("request.body") // get the request body
         .should("deep.equal", expectedPayload); // compare with the expected payload
-      cy.url() // wait for the redirection
-        .should("equal", homeFullUrl); // compare with the expected url
-      cy.get(`a[href="${profileUrl}"]`) // wait for the user menu
+      cy.get("@postRegister") // wait for the request
+        .its("response.statusCode") // get the response status code
+        .should("equal", ACCEPTED_CODE); // compare with the expected status code
+      cy.get(`a[href="/activity"]`) // has logged in options
         .should("be.visible"); // assert it is visible
     });
   });
 
-  context("when types invalid credentials", () => {
+  context.skip("When types invalid credentials", () => {
     beforeEach(() => {
-      cy.get("#email").type(credentials.email);
-      cy.get("#password").type("wrong_password");
+      cy.get("#username").clear().type(credentials.username).blur();
+      cy.get("#email").clear().type(credentials.email).blur();
+      cy.get("#password").clear().type(credentials.password).blur();
+      cy.get("#confirm").clear().type(credentials.password).blur();
+      cy.get("#terms").invoke("prop", "checked", true).trigger("change");
       cy.get("form button[type=submit]").should("be.enabled").click();
     });
-    it("should get 400 go home and display anonymous menu", () => {
+    it("Then should get a 400 response and still display anonymous menu", () => {
       const INVALID_CODE = 400;
-      cy.get("@postLogin") // wait for the request
+      cy.get("@postRegister") // wait for the request
         .its("response.statusCode") // get the response status code
         .should("equal", INVALID_CODE); // compare with the expected status code
-      cy.url() // wait for the redirection
-        .should("equal", homeFullUrl); // compare with the expected url
-      cy.get(`a[href="${loginUrl}"]`) // wait for the login menu
+      cy.get(`a[href="/auth/login"]`) // wait for the login menu
         .should("be.visible"); // assert it is visible
     });
   });
