@@ -24,15 +24,12 @@ describe("Given the list of activities for an anonymous user", () => {
         });
       cy.get("@firstActivityLink").click();
     });
-    it("Then should navigate the book activity page", () => {
+    it("Then should navigate the book activity page And should display an article with activity information And should display info related to participants", () => {
       const activitySlug = activityName.toLowerCase().replace(/ /g, "-");
       cy.url().should("include", activitySlug);
-    });
-    it("And should display an article with activity information", () => {
       cy.get("article h2").contains(activityName, { matchCase: false });
-    });
-    it("and should display info related to participants", () => {
       cy.get("article").within(() => {
+        // works inside
         cy.get("li").should("contain", "Participants");
       });
     });
