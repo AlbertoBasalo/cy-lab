@@ -1,4 +1,4 @@
-// intercept
+// intercept with wrong strategy
 
 /**
  * Given a user at register flow
@@ -7,58 +7,56 @@
  *  when re-types credentials
  *    should get a 400 response 
  */
+
 describe("Given a user at login flow", () => {
-  const registerUrl = "/auth/register";
-  const credentials: any = {
+  const registerUrl = 'http://localhost:3000/api/register'
+  const credentials = {
     username: "Test User",
     email: "test@valid.org",
-    password: "1234",
+    password: "1validPassword!",
     terms: true,
-  };
-  const registerApiUrl = `${Cypress.env("apiUrl")}/register`;
+  }
   beforeEach(() => {
-    cy.intercept("POST", registerApiUrl).as("postRegister");
-    cy.visit(registerUrl);
-  });
-  context.only("When types valid credentials", () => {
+    cy.intercept('POST', registerUrl).as('postRegister')
+    cy.visit('/auth/register')
+  })
+  context("When types valid credentials", () => {
     beforeEach(() => {
-      cy.get("#username").clear().type(credentials.username).blur();
-      cy.get("#email").clear().type(credentials.email).blur();
-      cy.get("#password").clear().type(credentials.password).blur();
-      cy.get("#confirm").clear().type(credentials.password).blur();
-      cy.get("#terms").invoke("prop", "checked", true).trigger("change");
-      cy.get("form button[type=submit]").should("be.enabled").click();
+      cy.get("#username").type(credentials.username);
+      cy.get("#email").type(credentials.email);
+      cy.get("#password").type(credentials.password);
+      cy.get("#confirm").type(credentials.password);
+      cy.get("#terms").check();
+      cy.get("form button[type=submit]").as('submitCredentials').should('be.enabled')
+      cy.get('@submitCredentials').click();
     });
     it("Then should send the form data to the server And displays user menu", () => {
-      const expectedPayload = credentials;
-      const ACCEPTED_CODE = 201;
-      cy.get("@postRegister") // wait for the request
-        .its("request.body") // get the request body
-        .should("deep.equal", expectedPayload); // compare with the expected payload
-      cy.get("@postRegister") // wait for the request
-        .its("response.statusCode") // get the response status code
-        .should("equal", ACCEPTED_CODE); // compare with the expected status code
-      cy.get(`a[href="/activity"]`) // has logged in options
-        .should("be.visible"); // assert it is visible
+      cy.get('@postRegister') // wait for the request
+        .its('response.statusCode')// get the response status code
+        .should('equal', 201)
     });
   });
-
-  context.skip("When types invalid credentials", () => {
+  context("When types invalid credentials", () => {
     beforeEach(() => {
-      cy.get("#username").clear().type(credentials.username).blur();
-      cy.get("#email").clear().type(credentials.email).blur();
-      cy.get("#password").clear().type(credentials.password).blur();
-      cy.get("#confirm").clear().type(credentials.password).blur();
-      cy.get("#terms").invoke("prop", "checked", true).trigger("change");
-      cy.get("form button[type=submit]").should("be.enabled").click();
+      cy.get("#username").type(credentials.username);
+      cy.get("#email").type(credentials.email);
+      cy.get("#password").type(credentials.password);
+      cy.get("#confirm").type(credentials.password);
+      cy.get("#terms").check();
+      cy.get("form button[type=submit]").as('submitCredentials').should('be.enabled')
+      cy.get('@submitCredentials').click();
     });
     it("Then should get a 400 response and still display anonymous menu", () => {
       const INVALID_CODE = 400;
-      cy.get("@postRegister") // wait for the request
-        .its("response.statusCode") // get the response status code
-        .should("equal", INVALID_CODE); // compare with the expected status code
-      cy.get(`a[href="/auth/login"]`) // wait for the login menu
-        .should("be.visible"); // assert it is visible
+      cy.get("@postRegister")
+        .its('request')
+        .its('body')
+        .should('deep.equal', credentials)
+      cy.get("@postRegister")
+        .its("response.statusCode")
+        .should("equal", INVALID_CODE);
+      cy.get(`a[href="/auth/login"]`)
+        .should("be.visible");
     });
   });
-});
+})

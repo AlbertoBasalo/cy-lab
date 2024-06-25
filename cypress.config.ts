@@ -6,7 +6,7 @@ export default defineConfig({
     defaultCommandTimeout: 4000,
     screenshotOnRunFailure: false,
     video: false,
-    viewportHeight: 1366,
+    viewportHeight: 768,
     viewportWidth: 1024,
     env: {
       apiUrl: "http://localhost:3000/api",

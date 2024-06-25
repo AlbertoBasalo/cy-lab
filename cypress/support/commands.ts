@@ -6,16 +6,17 @@ export const TOKEN_KEY = "lab_user-token";
 
 Cypress.Commands.add("loginUI", () => {
   const loginUrl = "/auth/login";
+  cy.visit(loginUrl);
+  const loginApiUrl = `${Cypress.env("apiUrl")}/login`;
+  cy.intercept("POST", loginApiUrl).as("postLogin");
   const credentials: any = {
     email: "test@valid.org",
-    password: "1234",
+    password: "1validPassword!",
   };
-  const loginApiUrl = `${Cypress.env("apiUrl")}/login`;
-  cy.visit(loginUrl);
-  cy.intercept("POST", loginApiUrl).as("postLogin");
-  cy.get("#email").type(credentials.email);
-  cy.get("#password").type(credentials.password);
-  cy.get("form button[type=submit]").should("be.enabled").click();
+  cy.get("form").type("{enter}");
+  cy.get("#email").type(credentials.email)
+  cy.get("#password").type(credentials.password)
+  cy.get("button[type=submit]").click();
   cy.wait("@postLogin");
 });
 
