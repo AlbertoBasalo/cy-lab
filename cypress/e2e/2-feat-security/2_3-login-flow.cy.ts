@@ -19,6 +19,7 @@ describe("Given a user at login flow", () => {
   });
   context("when sends valid credentials", () => {
     beforeEach(() => {
+      // get the credentials from the config
       const credentials: any = Cypress.env("testUser")
       cy.get("form").type('{enter}');
       cy.get("#email").type(credentials.email);
@@ -40,7 +41,7 @@ describe("Given a user at login flow", () => {
       cy.wait("@postLogin"); // wait for the request to finish
     });
     it("Then should still display anonymous menu", () => {
-      cy.get('@loginMenu')  // the login menu exists
+      cy.get('@loginMenu')  // the login menu still exists
     });
   });
 });

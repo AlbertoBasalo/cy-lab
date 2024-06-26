@@ -49,11 +49,8 @@ describe("Given a user at login flow", () => {
   });
   context("When sends valid credentials", () => {
     beforeEach(() => {
-      // simulate a successful register without the need of a server
-      const fakeResponse = {
-        statusCode: 201
-      }
-      cy.intercept('POST', registerUrl, fakeResponse).as('postRegister')
+      // spy the request to check the data sent
+      cy.intercept('POST', registerUrl).as('postRegister')
       cy.get("#username").type(credentials.username);
       cy.get("#email").type(credentials.email);
       cy.get("#password").type(credentials.password);

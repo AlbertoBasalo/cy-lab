@@ -2,23 +2,13 @@
 /* eslint-disable @typescript-eslint/no-namespace */
 /// <reference types="cypress" />
 
+import { loginUI, loginUICredentials, typeBlur } from "./login.functions";
+
 export const TOKEN_KEY = "lab_user-token";
 
-Cypress.Commands.add("loginUI", () => {
-  const loginUrl = "/auth/login";
-  cy.visit(loginUrl);
-  const loginApiUrl = `${Cypress.env("apiUrl")}/login`;
-  cy.intercept("POST", loginApiUrl).as("postLogin");
-  const credentials: any = {
-    email: "test@valid.org",
-    password: "1validPassword!",
-  };
-  cy.get("form").type("{enter}");
-  cy.get("#email").type(credentials.email)
-  cy.get("#password").type(credentials.password)
-  cy.get("button[type=submit]").click();
-  cy.wait("@postLogin");
-});
+Cypress.Commands.add('loginUI', loginUI)
+Cypress.Commands.add('loginUICredentials', loginUICredentials)
+Cypress.Commands.add('typeBlur', typeBlur)
 
 Cypress.Commands.add("login", () => {
   cy.fixture("user-token.json").then((userToken) => {
@@ -93,8 +83,10 @@ declare global {
   namespace Cypress {
     interface Chainable {
       loginUI(): Chainable<null>;
+      loginUICredentials(email: string, password: string): Chainable<null>;
       login(): Chainable<null>;
       logout(): Chainable<null>;
+      typeBlur(selector: string, value: unknown): Chainable<null>
       registerFlow(): Chainable<null>;
       registerUI(username: string, email: string, password: string): Chainable<void>;
       interceptPublishedActivities(): Chainable<object>;
