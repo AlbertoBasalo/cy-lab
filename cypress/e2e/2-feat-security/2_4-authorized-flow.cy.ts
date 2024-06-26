@@ -1,4 +1,5 @@
-// cy commands
+// automate with cy commands and npm scripts
+// "test:auth": "cypress run --spec '**/2_*.cy.ts'",
 
 /**
  * Given an already registered and logged user
@@ -19,3 +20,5 @@ describe("Given an already registered and logged user", () => {
     });
   });
 });
+
+

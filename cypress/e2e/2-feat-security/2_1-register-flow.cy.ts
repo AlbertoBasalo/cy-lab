@@ -13,12 +13,13 @@ describe("Given a user at login flow", () => {
   const credentials = {
     username: "Test User",
     email: "test@valid.org",
-    password: "1validPassword!",
+    password: "@validPassword1",
     terms: true,
   }
   beforeEach(() => {
     cy.intercept('POST', registerUrl).as('postRegister')
     cy.visit('/auth/register')
+    cy.get("form button[type=submit]").as('submitCredentials')
   })
   context("When types valid credentials", () => {
     beforeEach(() => {
@@ -27,7 +28,6 @@ describe("Given a user at login flow", () => {
       cy.get("#password").type(credentials.password);
       cy.get("#confirm").type(credentials.password);
       cy.get("#terms").check();
-      cy.get("form button[type=submit]").as('submitCredentials').should('be.enabled')
       cy.get('@submitCredentials').click();
     });
     it("Then should send the form data to the server And displays user menu", () => {
@@ -43,15 +43,14 @@ describe("Given a user at login flow", () => {
       cy.get("#password").type(credentials.password);
       cy.get("#confirm").type(credentials.password);
       cy.get("#terms").check();
-      cy.get("form button[type=submit]").as('submitCredentials').should('be.enabled')
       cy.get('@submitCredentials').click();
     });
     it("Then should get a 400 response and still display anonymous menu", () => {
       const INVALID_CODE = 400;
-      cy.get("@postRegister")
-        .its('request')
-        .its('body')
-        .should('deep.equal', credentials)
+      cy.get("@postRegister") // wait for the request
+        .its('request') // get the request
+        .its('body') // get the body
+        .should('deep.equal', credentials) // assert the body has the same data
       cy.get("@postRegister")
         .its("response.statusCode")
         .should("equal", INVALID_CODE);
