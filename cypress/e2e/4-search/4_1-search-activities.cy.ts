@@ -10,8 +10,6 @@ describe('', () => {
   const homePage = new HomePage();
   const searchTerm = 'diving';
   beforeEach(() => {
-    const url = `${Cypress.env('apiUrl')}/activities*`;
-    cy.intercept(url).as('getActivities');
     homePage.visit();
   });
   context('When I search for "diving"', () => {
