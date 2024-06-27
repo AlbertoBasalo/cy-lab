@@ -37,7 +37,7 @@ describe('Given a logged in user visiting the new activity page', () => {
       newActivityPage.submit();
     });
     it('Then should sent the form data to the server', () => {
-      // ! fails bc of id userId and slug
+      // ! fails bc of userId and slug
       cy.get('@postActivity').its('request').its('body').should('not.deep.equal', newActivity);
       // alternative way to check the request body
       cy.get('@postActivity')
@@ -45,7 +45,7 @@ describe('Given a logged in user visiting the new activity page', () => {
         .its('body')
         .then((body) => {
           // check all properties except id userId and slug
-          const { id, userId, slug, ...expectedBody } = body;
+          const { userId, slug, ...expectedBody } = body;
           expect(expectedBody).to.deep.equal(newActivity);
         });
     });
